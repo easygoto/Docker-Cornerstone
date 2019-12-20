@@ -1,12 +1,36 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm
 COPY composer.phar /usr/bin/composer
-RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
-RUN docker-php-ext-install gd pdo_mysql pdo_pgsql opcache zip exif pcntl \
-RUN pecl install xdebug \
-RUN docker-php-ext-enable xdebug \
-RUN pecl install mongodb \
-RUN docker-php-ext-enable mongodb \
-RUN pecl install redis \
-RUN docker-php-ext-enable redis \
-RUN pecl install apcu \
-RUN docker-php-ext-enable apcu
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
+RUN echo "deb http://mirrors.163.com/debian/ stretch main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-updates main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-backports main contrib non-free" > /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y --allow-downgrades zlib1g=1:1.2.8.dfsg-5 zlib1g-dev libjpeg-dev libpng-dev zip unzip
+RUN docker-php-source extract
+RUN cd /usr/src/php/ext/gd
+RUN docker-php-ext-configure gd --with-jpeg --with-png
+RUN docker-php-ext-install gd
+
+# bcmath bz2 calendar ctype curl dba dom enchant exif ffi fileinfo filter ftp gd gettext gmp hash iconv imap intl json
+# ldap mbstring mysqli oci8 odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite
+# pgsql phar posix pspell readline reflection session shmop simplexml snmp soap sockets sodium spl standard sysvmsg sysvsem
+# sysvshm tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zend_test zip
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install fileinfo
+RUN docker-php-ext-install iconv
+RUN docker-php-ext-install json
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install opcache
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install session
+RUN docker-php-ext-install sockets
+#RUN docker-php-ext-install zip
+
+ADD ext/redis-5.1.1.tgz /usr/local/src/
+ADD ext/xdebug-2.9.0.tgz /usr/local/src/
+ADD ext/mongodb-1.6.1.tgz /usr/local/src/
+ADD ext/swoole-4.4.13.tgz /usr/local/src/
+RUN pecl install redis-5.1.1.tgz
+RUN pecl install xdebug-2.9.0.tgz
+RUN pecl install mongodb-1.6.1.tgz
+RUN pecl install swoole-4.4.13.tgz
+RUN docker-php-ext-enable redis mongodb swoole
