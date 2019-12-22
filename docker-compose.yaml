@@ -22,7 +22,7 @@ services:
     volumes:
       - ./html:/var/www/html:rw
       - ./php74/php.ini:/usr/local/etc/php/php.ini:ro
-      - ./logs/php:/var/log/php:rw
+      - ./logs/php74:/var/log/php:rw
     privileged: true
   mysql:
     image: mysql
