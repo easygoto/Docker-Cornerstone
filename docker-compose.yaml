@@ -21,8 +21,7 @@ services:
       - "9000"
     volumes:
       - ./html:/var/www/html:rw
-      - ./php74/php.ini:/usr/local/etc/php/php.ini:ro
-      - ./logs/php74:/var/log/php:rw
+      - ./php/php74/php.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
   mysql:
     image: mysql
