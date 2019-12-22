@@ -5,7 +5,7 @@ services:
     networks:
       - backend
     ports:
-      - "50080:80"
+      - "80:80"
     depends_on:
       - php74
     volumes:
@@ -31,7 +31,7 @@ services:
     environment:
         MYSQL_ROOT_PASSWORD: "123123"
     ports:
-      - "53306:3306"
+      - "3306:3306"
     volumes:
       - ./mysql/data:/var/lib/mysql:rw
       - ./mysql/conf/my.cnf:/etc/mysql/my.cnf
@@ -41,7 +41,7 @@ services:
     networks:
       - backend
     ports:
-      - "57017:27017"
+      - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=123123
@@ -53,7 +53,7 @@ services:
     networks:
       - backend
     ports:
-      - "56379:6379"
+      - "6379:6379"
     privileged: true
 networks:
   backend:
