@@ -7,21 +7,21 @@ services:
     ports:
       - "50080:80"
     depends_on:
-      - php
+      - php74
     volumes:
       - ./html:/var/www/html:rw
       - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - ./logs/nginx:/var/log/nginx
     privileged: true
-  php:
-    build: ./php/
+  php74:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
     networks:
       - backend
     expose:
       - "9000"
     volumes:
       - ./html:/var/www/html:rw
-      - ./php/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./php74/php.ini:/usr/local/etc/php/php.ini:ro
       - ./logs/php:/var/log/php:rw
     privileged: true
   mysql:
