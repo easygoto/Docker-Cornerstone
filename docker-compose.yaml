@@ -7,12 +7,23 @@ services:
     ports:
       - "80:80"
     depends_on:
+      - php56
       - php73
       - php74
     volumes:
       - ./html:/var/www/html:rw
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
+    privileged: true
+  php56:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
+    networks:
+      - backend
+    expose:
+      - "9000"
+    volumes:
+      - ./html:/var/www/html:rw
+      - ./php/php56/php.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
   php73:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
