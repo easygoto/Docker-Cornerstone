@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  nginx_0:
+  gateway:
     image: nginx:alpine
     networks:
       - backend
@@ -11,122 +11,122 @@ services:
       - nginx_2
       - nginx_3
     volumes:
-      - ./nginx/nginx0/conf.d:/etc/nginx/conf.d
-      - ./logs/nginx/nginx0:/var/log/nginx
+      - ./server/gateway/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/nginx/gateway:/var/log/nginx
     privileged: true
+
   nginx_1:
     image: nginx:alpine
     networks:
       - backend
     depends_on:
-      - php_1_56
-      - php_1_73
-      - php_1_74
+      - php56_1
+      - php73_1
+      - php74_1
     volumes:
-      - ./html/html1:/var/www/html
-      - ./nginx/nginx1/conf.d:/etc/nginx/conf.d
-      - ./logs/nginx/nginx1:/var/log/nginx
+      - ./server/server1/html:/var/www/html
+      - ./server/server1/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/nginx/server1:/var/log/nginx
     privileged: true
+  php56_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
+    networks:
+      - backend
+    volumes:
+      - ./server/server1/html:/var/www/html:rw
+      - ./server/server1/php56/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php73_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
+    networks:
+      - backend
+    volumes:
+      - ./server/server1/html:/var/www/html:rw
+      - ./server/server1/php73/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php74_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
+    networks:
+      - backend
+    volumes:
+      - ./server/server1/html:/var/www/html:rw
+      - ./server/server1/php74/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
   nginx_2:
     image: nginx:alpine
     networks:
       - backend
     depends_on:
-      - php_2_56
-      - php_2_73
-      - php_2_74
+      - php56_2
+      - php73_2
+      - php74_2
     volumes:
-      - ./html/html2:/var/www/html
-      - ./nginx/nginx2/conf.d:/etc/nginx/conf.d
-      - ./logs/nginx/nginx2:/var/log/nginx
+      - ./server/server2/html:/var/www/html
+      - ./server/server2/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/nginx/server2:/var/log/nginx
     privileged: true
+  php56_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
+    networks:
+      - backend
+    volumes:
+      - ./server/server2/html:/var/www/html:rw
+      - ./server/server2/php56/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php73_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
+    networks:
+      - backend
+    volumes:
+      - ./server/server2/html:/var/www/html:rw
+      - ./server/server2/php73/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php74_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
+    networks:
+      - backend
+    volumes:
+      - ./server/server2/html:/var/www/html:rw
+      - ./server/server2/php74/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
   nginx_3:
     image: nginx:alpine
     networks:
       - backend
     depends_on:
-      - php_3_56
-      - php_3_73
-      - php_3_74
+      - php56_3
+      - php73_3
+      - php74_3
     volumes:
-      - ./html/html3:/var/www/html
-      - ./nginx/nginx3/conf.d:/etc/nginx/conf.d
-      - ./logs/nginx/nginx3:/var/log/nginx
+      - ./server/server3/html:/var/www/html
+      - ./server/server3/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/nginx/server3:/var/log/nginx
     privileged: true
-
-  php_1_56:
+  php56_3:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
     networks:
       - backend
     volumes:
-      - ./html/html1:/var/www/html:rw
-      - ./php/php1/php56/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./server/server3/html:/var/www/html:rw
+      - ./server/server3/php56/php.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
-  php_1_73:
+  php73_3:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
     networks:
       - backend
     volumes:
-      - ./html/html1:/var/www/html:rw
-      - ./php/php1/php73/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./server/server3/html:/var/www/html:rw
+      - ./server/server3/php73/php.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
-  php_1_74:
+  php74_3:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
     networks:
       - backend
     volumes:
-      - ./html/html1:/var/www/html:rw
-      - ./php/php1/php74/php.ini:/usr/local/etc/php/php.ini:ro
-    privileged: true
-
-  php_2_56:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
-    networks:
-      - backend
-    volumes:
-      - ./html/html2:/var/www/html:rw
-      - ./php/php2/php56/php.ini:/usr/local/etc/php/php.ini:ro
-    privileged: true
-  php_2_73:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
-    networks:
-      - backend
-    volumes:
-      - ./html/html2:/var/www/html:rw
-      - ./php/php2/php73/php.ini:/usr/local/etc/php/php.ini:ro
-    privileged: true
-  php_2_74:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
-    networks:
-      - backend
-    volumes:
-      - ./html/html2:/var/www/html:rw
-      - ./php/php2/php74/php.ini:/usr/local/etc/php/php.ini:ro
-    privileged: true
-
-  php_3_56:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
-    networks:
-      - backend
-    volumes:
-      - ./html/html3:/var/www/html:rw
-      - ./php/php3/php56/php.ini:/usr/local/etc/php/php.ini:ro
-    privileged: true
-  php_3_73:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
-    networks:
-      - backend
-    volumes:
-      - ./html/html3:/var/www/html:rw
-      - ./php/php3/php73/php.ini:/usr/local/etc/php/php.ini:ro
-    privileged: true
-  php_3_74:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
-    networks:
-      - backend
-    volumes:
-      - ./html/html3:/var/www/html:rw
-      - ./php/php3/php74/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./server/server3/html:/var/www/html:rw
+      - ./server/server3/php74/php.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
 networks:
   backend:
