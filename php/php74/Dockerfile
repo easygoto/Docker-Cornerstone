@@ -4,10 +4,10 @@ RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/compos
 
 RUN echo "deb http://mirrors.163.com/debian/ stretch main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-updates main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-backports main contrib non-free" > /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install -y --allow-downgrades zlib1g=1:1.2.8.dfsg-5 zlib1g-dev libjpeg-dev libpng-dev zip unzip
+RUN apt-get install -y --allow-downgrades zlib1g=1:1.2.8.dfsg-5 zlib1g-dev libjpeg-dev libpng-dev zip unzip libzip-dev
 RUN docker-php-source extract
 RUN cd /usr/src/php/ext/gd
-RUN docker-php-ext-configure gd --with-jpeg --with-png
+RUN docker-php-ext-configure gd --with-jpeg
 RUN docker-php-ext-install gd
 
 # bcmath bz2 calendar ctype curl dba dom enchant exif ffi fileinfo filter ftp gd gettext gmp hash iconv imap intl json
@@ -23,14 +23,16 @@ RUN docker-php-ext-install opcache
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install session
 RUN docker-php-ext-install sockets
-#RUN docker-php-ext-install zip
+RUN docker-php-ext-install zip
 
-ADD ext/redis-5.1.1.tgz /usr/local/src/
-ADD ext/xdebug-2.9.0.tgz /usr/local/src/
-ADD ext/mongodb-1.6.1.tgz /usr/local/src/
-ADD ext/swoole-4.4.13.tgz /usr/local/src/
+COPY ext/redis-5.1.1.tgz /tmp/pear/download/
+COPY ext/xdebug-2.9.0.tgz /tmp/pear/download/
+COPY ext/mongodb-1.6.1.tgz /tmp/pear/download/
+COPY ext/swoole-4.4.13.tgz /tmp/pear/download/
+COPY ext/memcache-4.0.5.2.tgz /tmp/pear/download/
 RUN pecl install redis-5.1.1.tgz
 RUN pecl install xdebug-2.9.0.tgz
 RUN pecl install mongodb-1.6.1.tgz
 RUN pecl install swoole-4.4.13.tgz
-RUN docker-php-ext-enable redis mongodb swoole
+RUN pecl install memcache-4.0.5.2.tgz
+RUN docker-php-ext-enable redis mongodb swoole memcache
