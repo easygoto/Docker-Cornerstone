@@ -25,14 +25,9 @@ RUN docker-php-ext-install session
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install zip
 
-COPY ext/redis-5.1.1.tgz /tmp/pear/download/
-COPY ext/xdebug-2.9.0.tgz /tmp/pear/download/
-COPY ext/mongodb-1.6.1.tgz /tmp/pear/download/
-COPY ext/swoole-4.4.13.tgz /tmp/pear/download/
-COPY ext/memcache-4.0.5.2.tgz /tmp/pear/download/
 RUN pecl install redis-5.1.1.tgz
 RUN pecl install xdebug-2.9.0.tgz
 RUN pecl install mongodb-1.6.1.tgz
 RUN pecl install swoole-4.4.13.tgz
 RUN pecl install memcache-4.0.5.2.tgz
-RUN docker-php-ext-enable redis mongodb swoole memcache
+RUN docker-php-ext-enable xdebug redis mongodb swoole memcache
