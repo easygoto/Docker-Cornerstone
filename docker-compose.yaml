@@ -65,5 +65,20 @@ services:
     ports:
       - "6379:6379"
     privileged: true
+  memcached:
+    image: memcached:alpine
+    networks:
+      - backend
+    ports:
+      - "11211:11211"
+    privileged: true
+  rabbitmq:
+    image: rabbitmq:management
+    networks:
+      - backend
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    privileged: true
 networks:
   backend:
