@@ -1,5 +1,6 @@
 FROM php:7.3-fpm
 COPY composer.phar /usr/bin/composer
+COPY .bashrc /root/.bashrc
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 RUN echo "deb http://mirrors.163.com/debian/ stretch main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-updates main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-backports main contrib non-free" > /etc/apt/sources.list
