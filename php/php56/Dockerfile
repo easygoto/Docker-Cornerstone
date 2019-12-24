@@ -5,10 +5,10 @@ RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/compos
 
 RUN echo "deb http://mirrors.163.com/debian/ stretch main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-updates main contrib non-free\ndeb http://mirrors.163.com/debian/ stretch-backports main contrib non-free" > /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install -y --allow-downgrades zlib1g=1:1.2.8.dfsg-5 zlib1g-dev libjpeg-dev libpng-dev zip unzip librabbitmq-dev
+RUN apt-get install -y --allow-downgrades zlib1g=1:1.2.8.dfsg-5 zlib1g-dev libjpeg-dev libpng-dev zip unzip librabbitmq-dev libfreetype6-dev
 RUN docker-php-source extract
 RUN cd /usr/src/php/ext/gd
-RUN docker-php-ext-configure gd --with-jpeg-dir --with-png-dir
+RUN docker-php-ext-configure gd --with-jpeg-dir --with-png-dir --with-freetype-dir
 RUN docker-php-ext-install gd
 
 # bcmath bz2 calendar ctype curl dba dom enchant exif ffi fileinfo filter ftp gd gettext gmp hash iconv imap intl json
