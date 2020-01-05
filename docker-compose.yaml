@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nginx:
-    image: nginx:alpine
+    image: nginx
     networks:
       - backend
     ports:
@@ -70,14 +70,14 @@ services:
       - ./mongo/data:/data/:rw
     privileged: true
   redis:
-    image: redis:alpine
+    image: redis
     networks:
       - backend
     ports:
       - "6379:6379"
     privileged: true
   memcached:
-    image: memcached:alpine
+    image: memcached
     networks:
       - backend
     ports:
