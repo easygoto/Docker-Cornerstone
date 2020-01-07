@@ -75,6 +75,10 @@ services:
       - backend
     ports:
       - "6379:6379"
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./redis/redis.conf:/etc/redis/redis.conf:rw
+      - ./redis/data:/data:rw
     privileged: true
   memcached:
     image: memcached
