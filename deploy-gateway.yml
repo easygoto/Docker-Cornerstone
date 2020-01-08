@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  gateway:
+    image: nginx:alpine
+    networks:
+      - backend
+    ports:
+      - "80:80"
+    depends_on:
+      - php56_nginx_1
+      - php56_nginx_2
+      - php73_nginx_1
+      - php73_nginx_2
+      - php74_nginx_1
+      - php74_nginx_2
+    volumes:
+      - ./gateway/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/gateway/nginx:/var/log/nginx
+    privileged: true
+networks:
+  backend:
