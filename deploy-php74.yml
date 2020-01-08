@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  php74_nginx_1:
+    image: nginx:alpine
+    networks:
+      - backend
+    depends_on:
+      - php74_php_1
+    volumes:
+      - ./server/php74/system1/html:/var/www/html
+      - ./server/php74/system1/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/server_php74/nginx1:/var/log/nginx
+    privileged: true
+  php74_php_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
+    networks:
+      - backend
+    volumes:
+      - ./server/php74/system1/html:/var/www/html:rw
+      - ./server/php74/system1/php/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
+  php74_nginx_2:
+    image: nginx:alpine
+    networks:
+      - backend
+    depends_on:
+      - php74_php_2
+    volumes:
+      - ./server/php74/system2/html:/var/www/html
+      - ./server/php74/system2/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/server_php74/nginx2:/var/log/nginx
+    privileged: true
+  php74_php_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
+    networks:
+      - backend
+    volumes:
+      - ./server/php74/system2/html:/var/www/html:rw
+      - ./server/php74/system2/php/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+networks:
+  backend:

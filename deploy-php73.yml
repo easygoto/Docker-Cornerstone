@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  php73_nginx_1:
+    image: nginx:alpine
+    networks:
+      - backend
+    depends_on:
+      - php73_php_1
+    volumes:
+      - ./server/php73/system1/html:/var/www/html
+      - ./server/php73/system1/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/server_php73/nginx1:/var/log/nginx
+    privileged: true
+  php73_php_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
+    networks:
+      - backend
+    volumes:
+      - ./server/php73/system1/html:/var/www/html:rw
+      - ./server/php73/system1/php/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
+  php73_nginx_2:
+    image: nginx:alpine
+    networks:
+      - backend
+    depends_on:
+      - php73_php_2
+    volumes:
+      - ./server/php73/system2/html:/var/www/html
+      - ./server/php73/system2/nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/server_php73/nginx2:/var/log/nginx
+    privileged: true
+  php73_php_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
+    networks:
+      - backend
+    volumes:
+      - ./server/php73/system2/html:/var/www/html:rw
+      - ./server/php73/system2/php/php.ini:/usr/local/etc/php/php.ini:ro
+    privileged: true
+networks:
+  backend:
