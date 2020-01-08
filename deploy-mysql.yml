@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  mysql_master:
+    image: mysql
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "123123"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mysql/master/data:/var/lib/mysql:rw
+      - ./db/mysql/master/conf/my.cnf:/etc/mysql/my.cnf
+    privileged: true
+
+  mysql_slave:
+    image: mysql
+    networks:
+      - backend
+    depends_on:
+      - mysql_master
+    environment:
+      MYSQL_ROOT_PASSWORD: "123123"
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./db/mysql/slave/data:/var/lib/mysql:rw
+      - ./db/mysql/slave/conf/my.cnf:/etc/mysql/my.cnf
+    privileged: true
+networks:
+  backend:
