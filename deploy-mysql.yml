@@ -5,13 +5,15 @@ services:
     networks:
       db_mysql:
         ipv4_address: 172.63.0.2
+    env_file:
+      - ./.env
     environment:
-      MYSQL_ROOT_PASSWORD: "123123"
+      MYSQL_ROOT_PASSWORD: $MASTER_MYSQL_PASSWORD
     ports:
       - "3306:3306"
     volumes:
-      - ./db/mysql/master/data:/var/lib/mysql:rw
-      - ./db/mysql/master/conf/my.cnf:/etc/mysql/my.cnf
+      - $MASTER_MYSQL_DATA_DIR:/var/lib/mysql:rw
+      - $MASTER_MYSQL_CONFIG_FILE:/etc/mysql/my.cnf
     privileged: true
 
   mysql_slave:
@@ -19,15 +21,15 @@ services:
     networks:
       db_mysql:
         ipv4_address: 172.63.0.3
+    env_file:
+      - ./.env
     depends_on:
       - mysql_master
     environment:
-      MYSQL_ROOT_PASSWORD: "123123"
+      MYSQL_ROOT_PASSWORD: $SLAVE_MYSQL_PASSWORD
     ports:
       - "3307:3306"
     volumes:
-      - ./db/mysql/slave/data:/var/lib/mysql:rw
-      - ./db/mysql/slave/conf/my.cnf:/etc/mysql/my.cnf
+      - $SLAVE_MYSQL_DATA_DIR:/var/lib/mysql:rw
+      - $SLAVE_MYSQL_CONFIG_FILE:/etc/mysql/my.cnf
     privileged: true
-networks:
-  backend:

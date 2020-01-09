@@ -6,6 +6,8 @@ services:
       - backend
     ports:
       - "80:80"
+    env_file:
+      - ./.env
     depends_on:
       - php56_nginx_1
       - php56_nginx_2
@@ -14,8 +16,8 @@ services:
       - php74_nginx_1
       - php74_nginx_2
     volumes:
-      - ./gateway/nginx/conf.d:/etc/nginx/conf.d
-      - ./logs/gateway/nginx:/var/log/nginx
+      - $GATEWAY_NGINX_CONFIG_DIR:/etc/nginx/conf.d
+      - $GATEWAY_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
 networks:
   db_mysql:
