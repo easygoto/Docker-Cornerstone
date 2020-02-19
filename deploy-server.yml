@@ -35,6 +35,7 @@ services:
       - $MYSQL_DATA_DIR:/var/lib/mysql:rw
       - $MYSQL_CONFIG_FILE:/etc/mysql/my.cnf
     privileged: true
+
   mongo:
     image: mongo
     networks:
@@ -63,6 +64,7 @@ services:
       - $REDIS_CONFIG_FILE:/etc/redis/redis.conf:rw
       - $REDIS_DATA_DIR:/data:rw
     privileged: true
+
   memcached:
     image: memcached
     networks:
