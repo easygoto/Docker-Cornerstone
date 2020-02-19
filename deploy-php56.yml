@@ -14,7 +14,7 @@ services:
       - $PHP56_SYSTEM1_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
   php56_php_1:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6-fpm-xdebug
     networks:
       - backend
     env_file:
@@ -38,7 +38,7 @@ services:
       - $PHP56_SYSTEM2_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
   php56_php_2:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6-fpm-swoole
     networks:
       - backend
     env_file:

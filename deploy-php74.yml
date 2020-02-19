@@ -14,7 +14,7 @@ services:
       - $PHP74_SYSTEM1_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
   php74_php_1:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-fpm-xdebug
     networks:
       - backend
     env_file:
@@ -38,7 +38,7 @@ services:
       - $PHP74_SYSTEM2_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
   php74_php_2:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-fpm-swoole
     networks:
       - backend
     env_file:
