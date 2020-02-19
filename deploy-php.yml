@@ -1,0 +1,74 @@
+version: "3.7"
+services:
+  php56:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6-fpm-xdebug
+    networks:
+      - backend
+    expose:
+      - "9000"
+    env_file:
+      - ./.env
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP56_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php56_swoole:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6-fpm-swoole
+    networks:
+      - backend
+    expose:
+      - "9000"
+    env_file:
+      - ./.env
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP56_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php73:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3-fpm-xdebug
+    networks:
+      - backend
+    expose:
+      - "9000"
+    env_file:
+      - ./.env
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP73_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php73_swoole:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3-fpm-swoole
+    networks:
+      - backend
+    expose:
+      - "9000"
+    env_file:
+      - ./.env
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP73_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php74:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-fpm-xdebug
+    networks:
+      - backend
+    expose:
+      - "9000"
+    env_file:
+      - ./.env
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP74_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php74_swoole:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-fpm-swoole
+    networks:
+      - backend
+    expose:
+      - "9000"
+    env_file:
+      - ./.env
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP74_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true

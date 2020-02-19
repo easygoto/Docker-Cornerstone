@@ -10,49 +10,15 @@ services:
       - php56
       - php73
       - php74
+      - php56_swoole
+      - php73_swoole
+      - php74_swoole
     env_file:
       - ./.env
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $NGINX_CONFIG_DIR:/etc/nginx/conf.d
       - $NGINX_LOG_DIR:/var/log/nginx
-    privileged: true
-
-  php56:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php56
-    networks:
-      - backend
-    expose:
-      - "9000"
-    env_file:
-      - ./.env
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-      - $PHP56_INI_FILE:/usr/local/etc/php/php.ini:ro
-    privileged: true
-  php73:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php73
-    networks:
-      - backend
-    expose:
-      - "9000"
-    env_file:
-      - ./.env
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-      - $PHP73_INI_FILE:/usr/local/etc/php/php.ini:ro
-    privileged: true
-  php74:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php74
-    networks:
-      - backend
-    expose:
-      - "9000"
-    env_file:
-      - ./.env
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-      - $PHP74_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
   mysql:
