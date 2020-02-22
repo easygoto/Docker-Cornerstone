@@ -10,9 +10,8 @@ services:
       - php56
       - php73
       - php74
-      - php56_swoole
-      - php73_swoole
-      - php74_swoole
+      - phpsw73
+      - phpsw74
     env_file:
       - ./.env
     volumes:
