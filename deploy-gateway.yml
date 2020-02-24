@@ -5,9 +5,7 @@ services:
     networks:
       - backend
     ports:
-      - "80:80"
-    env_file:
-      - ./.env
+      - "8088:80"
     depends_on:
       - php56_nginx_1
       - php56_nginx_2

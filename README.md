@@ -1,4 +1,4 @@
-# PHPER 集群/分布式环境
+# PHPer 集群/分布式环境
 
 ## 环境架构
 
@@ -17,7 +17,7 @@ http://php74host
  |-- server: 服务器群
    |-- php56
      |-- system1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-     |-- system2: php-swoole 版
+     |-- system2: 同上
    |-- php73
      |-- system1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
      |-- system2: php-swoole 版
@@ -34,7 +34,7 @@ http://php74host
 - [x] nginx 负载均衡/反向代理
 - [x] mysql 主从复制/读写分离
 - [ ] mongodb 的应用
-- [ ] redis 分布式环境
+- [ ] redis 集群环境
 - [ ] memcached 分布式环境
 
 ## 经验积累

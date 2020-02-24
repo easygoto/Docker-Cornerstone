@@ -4,8 +4,6 @@ services:
     image: nginx:alpine
     networks:
       - backend
-    env_file:
-      - ./.env
     depends_on:
       - php74_php_1
     volumes:
@@ -14,11 +12,9 @@ services:
       - $PHP74_SYSTEM1_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
   php74_php_1:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-fpm-xdebug
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4
     networks:
       - backend
-    env_file:
-      - ./.env
     volumes:
       - $PHP74_SYSTEM1_HTML_DIR:/var/www/html:rw
       - $PHP74_SYSTEM1_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -30,19 +26,15 @@ services:
       - backend
     depends_on:
       - php74_php_2
-    env_file:
-      - ./.env
     volumes:
       - $PHP74_SYSTEM2_HTML_DIR:/var/www/html
       - $PHP74_SYSTEM2_NGINX_CONFIG_DIR:/etc/nginx/conf.d
       - $PHP74_SYSTEM2_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
   php74_php_2:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-fpm-swoole
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-swoole
     networks:
       - backend
-    env_file:
-      - ./.env
     volumes:
       - $PHP74_SYSTEM2_HTML_DIR:/var/www/html:rw
       - $PHP74_SYSTEM2_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
