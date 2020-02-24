@@ -6,8 +6,6 @@ services:
       - backend
     expose:
       - "9000"
-    env_file:
-      - ./.env
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP56_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -19,8 +17,6 @@ services:
       - backend
     expose:
       - "9000"
-    env_file:
-      - ./.env
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP73_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -32,8 +28,6 @@ services:
       - backend
     expose:
       - "9000"
-    env_file:
-      - ./.env
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP74_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -45,8 +39,6 @@ services:
       - backend
     expose:
       - "9000"
-    env_file:
-      - ./.env
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP73_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -63,8 +55,6 @@ services:
       - "9502:9502/udp"
       - "9503:9503/tcp"
       - "9504:9504/tcp"
-    env_file:
-      - ./.env
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP74_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
