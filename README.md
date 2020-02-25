@@ -34,7 +34,9 @@ http://php74host
 - [x] nginx 负载均衡/反向代理
 - [x] mysql 主从复制/读写分离
 - [ ] mongodb 的应用
-- [ ] redis 集群环境
+- [ ] redis 主从同步
+  - [x] 主从复制使用 replicaof, 主开aof关rdb, 从1关aof开rdb, 从2关aof关rdb
+  - [ ] 同步成功, 文件生成, 但是库里没数据
 - [ ] memcached 分布式环境
 
 ## 经验积累

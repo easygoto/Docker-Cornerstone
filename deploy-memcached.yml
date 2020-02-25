@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  memcached1:
+  memcached_1:
     image: memcached
     networks:
       - backend
@@ -8,7 +8,7 @@ services:
       - "11212:11211"
     privileged: true
 
-  memcached2:
+  memcached_2:
     image: memcached
     networks:
       - backend
@@ -16,7 +16,7 @@ services:
       - "11213:11211"
     privileged: true
 
-  memcached3:
+  memcached_3:
     image: memcached
     networks:
       - backend
@@ -24,7 +24,7 @@ services:
       - "11214:11211"
     privileged: true
 
-  memcached4:
+  memcached_4:
     image: memcached
     networks:
       - backend

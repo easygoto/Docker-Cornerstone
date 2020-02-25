@@ -1,33 +1,40 @@
 version: "3.7"
 services:
-  redis1:
+  redis_master:
     image: redis
     networks:
-      - backend
+      db_redis:
+        ipv4_address: 172.65.0.2
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_MASTER_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_MASTER_DATA_DIR:/data:rw
     ports:
       - "6380:6379"
     privileged: true
 
-  redis2:
+  redis_slave_1:
     image: redis
     networks:
-      - backend
+      db_redis:
+        ipv4_address: 172.65.0.3
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_SLAVE_1_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_SLAVE_1_DATA_DIR:/data:rw
     ports:
       - "6381:6379"
     privileged: true
-
-  redis3:
+ 
+  redis_slave_2:
     image: redis
     networks:
-      - backend
+      db_redis:
+        ipv4_address: 172.65.0.4
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_SLAVE_2_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_SLAVE_2_DATA_DIR:/data:rw
     ports:
       - "6382:6379"
-    privileged: true
-
-  redis4:
-    image: redis
-    networks:
-      - backend
-    ports:
-      - "6383:6379"
     privileged: true
