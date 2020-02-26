@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+  php56_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6
+    networks:
+      - backend
+    volumes:
+      - $SYSTEM56_1_HTML_DIR:/var/www/html:rw
+      - $SYSTEM56_1_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php56_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6
+    networks:
+      - backend
+    volumes:
+      - $SYSTEM56_2_HTML_DIR:/var/www/html:rw
+      - $SYSTEM56_2_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
+  php73_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3
+    networks:
+      - backend
+    volumes:
+      - $SYSTEM73_1_HTML_DIR:/var/www/html:rw
+      - $SYSTEM73_1_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php73_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3-swoole
+    networks:
+      - backend
+    volumes:
+      - $SYSTEM73_2_HTML_DIR:/var/www/html:rw
+      - $SYSTEM73_2_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
+  php74_1:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4
+    networks:
+      - backend
+    volumes:
+      - $SYSTEM74_1_HTML_DIR:/var/www/html:rw
+      - $SYSTEM74_1_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+  php74_2:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-swoole
+    networks:
+      - backend
+    volumes:
+      - $SYSTEM74_2_HTML_DIR:/var/www/html:rw
+      - $SYSTEM74_2_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true

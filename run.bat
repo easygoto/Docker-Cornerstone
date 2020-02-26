@@ -1,11 +1,10 @@
 @set deployCmd=docker-compose ^
    -f deploy-gateway.yml ^
+   -f deploy-nginx.yml ^
+   -f deploy-php.yml ^
    -f deploy-mysql.yml ^
-   -f deploy-memcached.yml ^
    -f deploy-redis.yml ^
-   -f deploy-php56.yml ^
-   -f deploy-php73.yml ^
-   -f deploy-php74.yml
+   -f deploy-memcached.yml
 
 @if "%1" == "" (
     @%deployCmd% start

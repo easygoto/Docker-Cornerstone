@@ -1,18 +1,18 @@
 version: "3.7"
 services:
   gateway:
-    image: nginx:alpine
+    image: nginx
     networks:
       - backend
     ports:
       - "8088:80"
     depends_on:
-      - php56_nginx_1
-      - php56_nginx_2
-      - php73_nginx_1
-      - php73_nginx_2
-      - php74_nginx_1
-      - php74_nginx_2
+      - nginx56_1
+      - nginx56_2
+      - nginx73_1
+      - nginx73_2
+      - nginx74_1
+      - nginx74_2
     volumes:
       - $GATEWAY_NGINX_CONFIG_DIR:/etc/nginx/conf.d
       - $GATEWAY_NGINX_LOG_DIR:/var/log/nginx

@@ -19,15 +19,12 @@ http://php74host
  |-- gateway: 网关服务器, 均衡分发同业务服务器(集群), 反向代理不同业务服务器(分布式)
  |-- logs: 各种日志文件
  |-- server: 服务器群
-   |-- php56
-     |-- system1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-     |-- system2: 同上
-   |-- php73
-     |-- system1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-     |-- system2: php-swoole 版
-   |-- php74
-     |-- system1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-     |-- system2: php-swoole 版
+   |-- system56_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
+   |-- system56_2: 同上
+   |-- system73_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
+   |-- system73_2: php-swoole 版
+   |-- system74_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
+   |-- system74_2: php-swoole 版
 ```
 
 ## 环境介绍
