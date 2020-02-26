@@ -21,20 +21,20 @@ services:
     command: redis-server /etc/redis/redis.conf
     volumes:
       - $REDIS_SLAVE_1_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_SLAVE_1_DATA_DIR:/data:rw
     ports:
       - "6381:6379"
     privileged: true
- 
+
   redis_slave_2:
     image: redis
     networks:
       db_redis:
         ipv4_address: 172.65.0.4
     command: redis-server /etc/redis/redis.conf
+    depends_on:
+      - redis_master
     volumes:
       - $REDIS_SLAVE_2_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_SLAVE_2_DATA_DIR:/data:rw
     ports:
       - "6382:6379"
     privileged: true

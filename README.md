@@ -12,6 +12,10 @@ http://php74host
    |-- mysql
      |-- master: 主数据库, 写数据库
      |-- slave: 从数据库, 读数据库
+   |-- redis
+     |-- master: 主库, 开启 aof, 关闭 rdb
+     |-- slave1: 从库1, 关闭 aof, 开启 rdb
+     |-- slave2: 从库2, 关闭 aof, 关闭 rdb
  |-- gateway: 网关服务器, 均衡分发同业务服务器(集群), 反向代理不同业务服务器(分布式)
  |-- logs: 各种日志文件
  |-- server: 服务器群
@@ -34,9 +38,7 @@ http://php74host
 - [x] nginx 负载均衡/反向代理
 - [x] mysql 主从复制/读写分离
 - [ ] mongodb 的应用
-- [ ] redis 主从同步
-  - [x] 主从复制使用 replicaof, 主开aof关rdb, 从1关aof开rdb, 从2关aof关rdb
-  - [ ] 同步成功, 文件生成, 但是库里没数据
+- [x] redis 主从同步(从库报设备繁忙的错误, 是因为从库的 data 映射到 windows 的原因)
 - [ ] memcached 分布式环境
 
 ## 经验积累
