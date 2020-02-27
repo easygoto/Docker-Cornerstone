@@ -24,7 +24,6 @@ services:
     ports:
       - "6381:6379"
     privileged: true
-
   redis_slave_2:
     image: redis
     networks:
@@ -37,4 +36,14 @@ services:
       - $REDIS_SLAVE_2_CONFIG_FILE:/etc/redis/redis.conf:rw
     ports:
       - "6382:6379"
+    privileged: true
+
+  redis_sentinel:
+    image: redis
+    networks:
+      db_redis:
+        ipv4_address: 172.65.0.11
+    command: redis-sentinel /etc/redis/sentinel.conf
+    volumes:
+      - $REDIS_SENTINEL_CONFIG_FILE:/etc/redis/sentinel.conf:rw
     privileged: true

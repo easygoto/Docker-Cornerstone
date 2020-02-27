@@ -36,6 +36,7 @@ http://php74host
 - [x] mysql 主从复制/读写分离
 - [ ] mongodb 的应用
 - [x] redis 主从同步(从库报设备繁忙的错误, 是因为从库的 data 映射到 windows 的原因)
+- [x] redis 哨兵(主库若断开, 所有的配置文件都会改变)
 - [ ] memcached 分布式环境
 
 ## 经验积累
