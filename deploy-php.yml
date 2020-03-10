@@ -1,36 +1,36 @@
 version: "3.7"
 services:
-  php56:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6
+  phpx56:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6-xdebug
     networks:
       - backend
     expose:
       - "9000"
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP56_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP56_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
-  php73:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3
+  phpx73:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3-xdebug
     networks:
       - backend
     expose:
       - "9000"
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP73_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP73_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
-  php74:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4
+  phpx74:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-xdebug
     networks:
       - backend
     expose:
       - "9000"
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP74_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP74_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
   phpsw73:

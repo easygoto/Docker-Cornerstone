@@ -7,9 +7,9 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - php56
-      - php73
-      - php74
+      - phpx56
+      - phpx73
+      - phpx74
       - phpsw73
       - phpsw74
     volumes:

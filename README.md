@@ -8,12 +8,11 @@
 - [x] redis
 - [x] memcached
 - [x] rabbitmq
-- [x] php5.6 +xdebug +redis +memcache +mongodb +amqp
-- [x] php5.6 +swoole +redis +memcache +mongodb +amqp
-- [x] php7.3 +xdebug +redis +memcache +mongodb +amqp
-- [x] php7.3 +swoole +redis +memcache +mongodb +amqp
-- [x] php7.4 +xdebug +redis +memcache +mongodb
-- [x] php7.4 +swoole +redis +memcache +mongodb
+- [x] php5.6 +xdebug +redis +memcache +mongodb +amqp +imagick +apcu
+- [x] php7.3 +xdebug +redis +memcache +mongodb +amqp +imagick +apcu
+- [x] php7.3 +swoole +swoole_async +redis +memcache +mongodb +amqp +imagick +apcu
+- [x] php7.4 +xdebug +redis +memcache +mongodb +imagick +apcu
+- [x] php7.4 +swoole +swoole_async +redis +memcache +mongodb +imagick +apcu
 
 ## 环境介绍
 
