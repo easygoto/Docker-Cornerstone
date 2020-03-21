@@ -11,17 +11,6 @@ services:
       - $PHP56_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
-  phpx73:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3-xdebug
-    networks:
-      - backend
-    expose:
-      - "9000"
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-      - $PHP73_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
-    privileged: true
-
   phpx74:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-xdebug
     networks:
@@ -31,17 +20,6 @@ services:
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP74_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
-    privileged: true
-
-  phpsw73:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.3-swoole
-    networks:
-      - backend
-    expose:
-      - "9000"
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-      - $PHP73_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
   phpsw74:

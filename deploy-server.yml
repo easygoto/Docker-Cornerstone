@@ -8,9 +8,7 @@ services:
       - "80:80"
     depends_on:
       - phpx56
-      - phpx73
       - phpx74
-      - phpsw73
       - phpsw74
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
