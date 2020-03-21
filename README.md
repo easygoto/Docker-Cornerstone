@@ -4,7 +4,6 @@
 
 ```
 http://php56host
-http://php73host
 http://php74host
 
 <root>
@@ -20,9 +19,7 @@ http://php74host
  |-- logs: 各种日志文件
  |-- server: 服务器群
    |-- system56_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-   |-- system56_2: 同上
-   |-- system73_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-   |-- system73_2: php-swoole 版
+   |-- system56_2: php-swoole 版
    |-- system74_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
    |-- system74_2: php-swoole 版
 ```

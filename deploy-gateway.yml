@@ -9,8 +9,6 @@ services:
     depends_on:
       - nginx56_1
       - nginx56_2
-      - nginx73_1
-      - nginx73_2
       - nginx74_1
       - nginx74_2
     volumes:

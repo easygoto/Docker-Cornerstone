@@ -23,29 +23,6 @@ services:
       - $SYSTEM56_2_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
 
-  nginx73_1:
-    image: nginx
-    networks:
-      - backend
-    depends_on:
-      - php73_1
-    volumes:
-      - $SYSTEM73_1_HTML_DIR:/var/www/html
-      - $SYSTEM73_1_NGINX_CONFIG_DIR:/etc/nginx/conf.d
-      - $SYSTEM73_1_NGINX_LOG_DIR:/var/log/nginx
-    privileged: true
-  nginx73_2:
-    image: nginx
-    networks:
-      - backend
-    depends_on:
-      - php73_2
-    volumes:
-      - $SYSTEM73_2_HTML_DIR:/var/www/html
-      - $SYSTEM73_2_NGINX_CONFIG_DIR:/etc/nginx/conf.d
-      - $SYSTEM73_2_NGINX_LOG_DIR:/var/log/nginx
-    privileged: true
-
   nginx74_1:
     image: nginx
     networks:
