@@ -5,7 +5,7 @@ services:
     networks:
       - backend
     expose:
-      - "9000"
+      - 9000
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP56_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -16,7 +16,7 @@ services:
     networks:
       - backend
     expose:
-      - "9000"
+      - 9000
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP74_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -27,12 +27,12 @@ services:
     networks:
       - backend
     expose:
-      - "9000"
+      - 9000
     ports:
-      - "9501:9501/tcp"
-      - "9502:9502/udp"
-      - "9503:9503/tcp"
-      - "9504:9504/tcp"
+      - 9501:9501/tcp
+      - 9502:9502/udp
+      - 9503:9503/tcp
+      - 9504:9504/tcp
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP74_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro

@@ -4,6 +4,7 @@
 
 - [x] nginx
 - [x] mysql
+- [x] postgresql
 - [x] mongodb
 - [x] redis
 - [x] memcached
@@ -11,7 +12,7 @@
 - [x] php5.6 +xdebug +redis +memcached +mongodb +amqp +imagick +apcu
 - [x] php5.6 +swoole +redis +memcached +mongodb +amqp +imagick +apcu
 - [x] php7.4 +xdebug +redis +memcache +mongodb +imagick +apcu +amqp
-- [x] php7.4 +swoole +swoole_async +swoole_postgreql +swoole_orm +redis +memcache +mongodb +imagick +apcu +amqp
+- [x] php7.4 +swoole +swoole_async +swoole_postgresql +swoole_orm +redis +memcache +mongodb +imagick +apcu +amqp
 
 ## 环境介绍
 
@@ -19,3 +20,7 @@
 - 当前窗口打开命令行, 使用 `.\run.bat up -d` 部署环境, `.\run.bat re` 重启环境
 - 有少许项目不支持 PHP7, 所以保留了 PHP5
 - swoole 和 xdebug 共存会报致命错误, 所以每个版本都分 xdebug 版和 swoole 版
+
+## 存在问题
+
+- [ ] pgsql 的 /var/lib/postgresql/data 目录映射不到主机, 原因是权限不能保持和容器的一致(postgres:700)

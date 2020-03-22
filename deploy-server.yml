@@ -5,7 +5,7 @@ services:
     networks:
       - backend
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - phpx56
       - phpx74
@@ -22,12 +22,22 @@ services:
     networks:
       - backend
     environment:
-        MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - $MYSQL_DATA_DIR:/var/lib/mysql:rw
       - $MYSQL_CONFIG_FILE:/etc/mysql/my.cnf
+    privileged: true
+
+  pgsql:
+    image: postgres
+    networks:
+      - backend
+    environment:
+      - POSTGRES_PASSWORD=$PGSQL_PASSWORD
+    ports:
+      - 5432:5432
     privileged: true
 
   mongo:
@@ -35,7 +45,7 @@ services:
     networks:
       - backend
     ports:
-      - "27017:27017"
+      - 27017:27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
@@ -48,7 +58,7 @@ services:
     networks:
       - backend
     ports:
-      - "6379:6379"
+      - 6379:6379
     command: redis-server /etc/redis/redis.conf
     volumes:
       - $REDIS_CONFIG_FILE:/etc/redis/redis.conf:rw
@@ -60,16 +70,16 @@ services:
     networks:
       - backend
     ports:
-      - "11211:11211"
+      - 11211:11211
     privileged: true
-
+ 
   rabbitmq:
     image: rabbitmq:management
     networks:
       - backend
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - 5672:5672
+      - 15672:15672
     environment:
       - RABBITMQ_DEFAULT_USER=$RABBITMQ_USER
       - RABBITMQ_DEFAULT_PASS=$RABBITMQ_PASSWORD
