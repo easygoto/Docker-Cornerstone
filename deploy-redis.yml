@@ -38,12 +38,32 @@ services:
       - "6382:6379"
     privileged: true
 
-  redis_sentinel:
+  redis_sentinel_1:
     image: redis
     networks:
       db_redis:
         ipv4_address: 172.65.0.11
     command: redis-sentinel /etc/redis/sentinel.conf
     volumes:
-      - $REDIS_SENTINEL_CONFIG_FILE:/etc/redis/sentinel.conf:rw
+      - $REDIS_SENTINEL_1_CONFIG_FILE:/etc/redis/sentinel.conf:rw
+    privileged: true
+
+  redis_sentinel_2:
+    image: redis
+    networks:
+      db_redis:
+        ipv4_address: 172.65.0.12
+    command: redis-sentinel /etc/redis/sentinel.conf
+    volumes:
+      - $REDIS_SENTINEL_2_CONFIG_FILE:/etc/redis/sentinel.conf:rw
+    privileged: true
+
+  redis_sentinel_3:
+    image: redis
+    networks:
+      db_redis:
+        ipv4_address: 172.65.0.13
+    command: redis-sentinel /etc/redis/sentinel.conf
+    volumes:
+      - $REDIS_SENTINEL_3_CONFIG_FILE:/etc/redis/sentinel.conf:rw
     privileged: true
