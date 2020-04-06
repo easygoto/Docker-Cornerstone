@@ -7,9 +7,9 @@ services:
     ports:
       - 80:80
     depends_on:
-      - phpx56
-      - phpx74
-      - phpsw74
+      - phpx5
+      - phpx7
+      - phpsw7
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $NGINX_CONFIG_FILE:/etc/nginx/nginx.conf

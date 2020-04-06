@@ -1,39 +1,37 @@
 version: "3.7"
 services:
-  phpx56:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:5.6-xdebug
+  phpx5:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php5-fpm-xdebug
     networks:
       - backend
     expose:
       - 9000
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP56_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP5_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
-  phpx74:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-xdebug
+  phpx7:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-xdebug
     networks:
       - backend
     expose:
       - 9000
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP74_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP7_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
-  phpsw74:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-swoole
+  phpsw7:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-swoole
     networks:
       - backend
     expose:
       - 9000
     ports:
-      - 9501:9501/tcp
-      - 9502:9502/udp
-      - 9503:9503/tcp
-      - 9504:9504/tcp
+      - 9501-9510:9501-9510
+      - 18305-18310:18305-18310
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP74_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true

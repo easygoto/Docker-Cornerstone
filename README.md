@@ -1,4 +1,4 @@
-# PHPER 专业环境
+# PHPer 专业环境
 
 ## 环境列表
 
@@ -9,10 +9,10 @@
 - [x] redis
 - [x] memcached
 - [x] rabbitmq
-- [x] php5.6 +xdebug +redis +memcached +mongodb +amqp +imagick +apcu
-- [x] php5.6 +swoole +redis +memcached +mongodb +amqp +imagick +apcu
-- [x] php7.4 +xdebug +redis +memcache +mongodb +imagick +apcu +amqp
-- [x] php7.4 +swoole +swoole_async +swoole_postgresql +swoole_orm +redis +memcache +mongodb +imagick +apcu +amqp
+- [x] php5.6 +xdebug +redis +memcache +memcached +mongodb +amqp +imagick +apcu
+- [x] php5.6 +swoole +redis +memcache +memcached +mongodb +amqp +imagick +apcu
+- [x] php7.4 +xdebug +redis +memcache +memcached +mongodb +amqp +imagick +apcu +yaml
+- [x] php7.4 +swoole +swoole_async +swoole_postgresql +swoole_orm +swoole_serialize +redis +memcache +memcached +mongodb +amqp +imagick +apcu +yaml
 
 ## 环境介绍
 
@@ -23,4 +23,4 @@
 
 ## 存在问题
 
-- [ ] pgsql 的 /var/lib/postgresql/data 目录映射不到主机, 原因是权限不能保持和容器的一致(postgres:700)
+- [ ] pgsql 的 /var/lib/postgresql/data 目录映射不到 windows 主机, 原因是权限不能保持和容器的一致(postgres:700)
