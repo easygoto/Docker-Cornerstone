@@ -1,7 +1,9 @@
 @set deployCmd=docker-compose ^
    -f deploy-gateway.yml ^
-   -f deploy-nginx.yml ^
-   -f deploy-php.yml ^
+   -f deploy-system5-1.yml ^
+   -f deploy-system5-2.yml ^
+   -f deploy-system7-1.yml ^
+   -f deploy-system7-2.yml ^
    -f deploy-mysql.yml ^
    -f deploy-redis.yml ^
    -f deploy-memcached.yml

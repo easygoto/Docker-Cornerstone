@@ -3,8 +3,8 @@
 ## 环境架构
 
 ```
-http://php56host
-http://php74host
+http://php5host
+http://php7host
 
 <root>
  |-- db
@@ -18,10 +18,10 @@ http://php74host
  |-- gateway: 网关服务器, 均衡分发同业务服务器(集群), 反向代理不同业务服务器(分布式)
  |-- logs: 各种日志文件
  |-- server: 服务器群
-   |-- system56_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-   |-- system56_2: php-swoole 版
-   |-- system74_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
-   |-- system74_2: php-swoole 版
+   |-- system5_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
+   |-- system5_2: php-swoole 版
+   |-- system7_1: php-xdebug 版, 模拟单独的服务器, 有自己的环境和项目
+   |-- system7_2: php-swoole 版
 ```
 
 ## 环境介绍
