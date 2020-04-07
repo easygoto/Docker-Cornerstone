@@ -5,7 +5,7 @@ services:
     networks:
       - backend
     depends_on:
-      - php7_1
+      - phpx7_1
     volumes:
       - $SYSTEM7_1_HTML_DIR:/var/www/html
       - $SYSTEM7_1_NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
@@ -13,7 +13,7 @@ services:
       - $SYSTEM7_1_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
 
-  php7_1:
+  phpx7_1:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-xdebug
     networks:
       - backend

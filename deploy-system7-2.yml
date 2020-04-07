@@ -5,7 +5,7 @@ services:
     networks:
       - backend
     depends_on:
-      - php7_2
+      - phpsw7_2
     volumes:
       - $SYSTEM7_2_HTML_DIR:/var/www/html
       - $SYSTEM7_2_NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
@@ -13,7 +13,7 @@ services:
       - $SYSTEM7_2_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
 
-  php7_2:
+  phpsw7_2:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-swoole
     networks:
       - backend
