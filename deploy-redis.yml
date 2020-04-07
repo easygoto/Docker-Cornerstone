@@ -1,69 +1,86 @@
 version: "3.7"
 services:
-  redis_master:
+  redis1_master:
     image: redis
     networks:
       db_redis:
         ipv4_address: 172.65.0.2
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/master.conf
     volumes:
-      - $REDIS_MASTER_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_MASTER_DATA_DIR:/data:rw
+      - $REDIS1_MASTER_CONFIG_FILE:/etc/redis/master.conf:rw
     ports:
-      - "6380:6379"
+      - 6380:6379
     privileged: true
 
-  redis_slave_1:
+  redis1_replica1:
     image: redis
     networks:
       db_redis:
         ipv4_address: 172.65.0.3
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/replica1.conf
     volumes:
-      - $REDIS_SLAVE_1_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS1_REPLICA1_CONFIG_FILE:/etc/redis/replica1.conf:rw
+      - $REDIS1_REPLICA1_DATA_DIR:/data:rw
     ports:
-      - "6381:6379"
+      - 6381:6379
     privileged: true
-  redis_slave_2:
+  redis1_replica2:
     image: redis
     networks:
       db_redis:
         ipv4_address: 172.65.0.4
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/replica2.conf
     depends_on:
-      - redis_master
+      - redis1_master
     volumes:
-      - $REDIS_SLAVE_2_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS1_REPLICA2_CONFIG_FILE:/etc/redis/replica2.conf:rw
+      - $REDIS1_REPLICA2_DATA_DIR:/data:rw
     ports:
-      - "6382:6379"
+      - 6382:6379
     privileged: true
 
-  redis_sentinel_1:
+  redis1_sentinel1:
     image: redis
     networks:
       db_redis:
-        ipv4_address: 172.65.0.11
-    command: redis-sentinel /etc/redis/sentinel.conf
+        ipv4_address: 172.65.0.21
+    command: redis-sentinel /etc/redis/sentinel1.conf
+    depends_on:
+      - redis1_master
+      - redis1_replica1
+      - redis1_replica2
+    ports:
+      - 26380:26379
     volumes:
-      - $REDIS_SENTINEL_1_CONFIG_FILE:/etc/redis/sentinel.conf:rw
+      - $REDIS1_SENTINEL1_CONFIG_FILE:/etc/redis/sentinel1.conf:rw
     privileged: true
-
-  redis_sentinel_2:
+  redis1_sentinel2:
     image: redis
     networks:
       db_redis:
-        ipv4_address: 172.65.0.12
-    command: redis-sentinel /etc/redis/sentinel.conf
+        ipv4_address: 172.65.0.22
+    command: redis-sentinel /etc/redis/sentinel2.conf
+    depends_on:
+      - redis1_master
+      - redis1_replica1
+      - redis1_replica2
+    ports:
+      - 26381:26379
     volumes:
-      - $REDIS_SENTINEL_2_CONFIG_FILE:/etc/redis/sentinel.conf:rw
+      - $REDIS1_SENTINEL2_CONFIG_FILE:/etc/redis/sentinel2.conf:rw
     privileged: true
-
-  redis_sentinel_3:
+  redis1_sentinel3:
     image: redis
     networks:
       db_redis:
-        ipv4_address: 172.65.0.13
-    command: redis-sentinel /etc/redis/sentinel.conf
+        ipv4_address: 172.65.0.23
+    command: redis-sentinel /etc/redis/sentinel3.conf
+    depends_on:
+      - redis1_master
+      - redis1_replica1
+      - redis1_replica2
+    ports:
+      - 26382:26379
     volumes:
-      - $REDIS_SENTINEL_3_CONFIG_FILE:/etc/redis/sentinel.conf:rw
+      - $REDIS1_SENTINEL3_CONFIG_FILE:/etc/redis/sentinel3.conf:rw
     privileged: true

@@ -5,7 +5,7 @@ services:
     networks:
       - backend
     ports:
-      - "11212:11211"
+      - 11212:11211
     privileged: true
 
   memcached_2:
@@ -13,7 +13,7 @@ services:
     networks:
       - backend
     ports:
-      - "11213:11211"
+      - 11213:11211
     privileged: true
 
   memcached_3:
@@ -21,7 +21,7 @@ services:
     networks:
       - backend
     ports:
-      - "11214:11211"
+      - 11214:11211
     privileged: true
 
   memcached_4:
@@ -29,5 +29,5 @@ services:
     networks:
       - backend
     ports:
-      - "11215:11211"
+      - 11215:11211
     privileged: true
