@@ -72,17 +72,19 @@ services:
     ports:
       - 11211:11211
     privileged: true
- 
-  rabbitmq:
+
+  rabbit:
     image: rabbitmq:management
+    hostname: docker_default
     networks:
       - backend
     ports:
       - 5672:5672
       - 15672:15672
-    environment:
-      - RABBITMQ_DEFAULT_USER=$RABBITMQ_USER
-      - RABBITMQ_DEFAULT_PASS=$RABBITMQ_PASSWORD
+    volumes:
+      - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
+      - $RABBIT_LOG_DIR:/var/log/rabbitmq:rw
+      - $RABBIT_DATA_DIR:/var/lib/rabbitmq/mnesia:rw
     privileged: true
 networks:
   backend:
