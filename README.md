@@ -28,3 +28,5 @@
 - [ ] pgsql 的 /var/lib/postgresql/data 目录映射不到 windows 主机, 原因是权限不能保持和容器的一致(postgres:700)
 - [x] rabbitmq 的 /var/lib/rabbitmq/mnesia 是数据目录, 但容器重启的时候, 数据前缀会根据容器的不同而不同, 不能持久化在本地
     - [x] 通过添加 hostname 来解决这个问题
+    - [x] 本地环境不建议在本地映射数据目录, 因为每次启动都会检查数据, 服务启动慢
+    - [ ] 数据保存在本地后, 启动不稳定

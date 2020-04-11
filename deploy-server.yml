@@ -75,7 +75,7 @@ services:
 
   rabbit:
     image: rabbitmq:management
-    hostname: docker_default
+#    hostname: docker_default
     networks:
       - backend
     ports:
@@ -83,8 +83,8 @@ services:
       - 15672:15672
     volumes:
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
-      - $RABBIT_LOG_DIR:/var/log/rabbitmq:rw
-      - $RABBIT_DATA_DIR:/var/lib/rabbitmq/mnesia:rw
+#      - $RABBIT_LOG_DIR:/var/log/rabbitmq:rw
+#      - $RABBIT_DATA_DIR:/var/lib/rabbitmq/mnesia:rw
     privileged: true
 networks:
   backend:
