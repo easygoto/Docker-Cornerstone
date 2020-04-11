@@ -3,8 +3,8 @@ services:
   redis1_master:
     image: redis
     networks:
-      db_redis:
-        ipv4_address: 172.65.0.2
+      backend:
+        ipv4_address: 172.63.11.2
     command: redis-server /etc/redis/master.conf
     volumes:
       - $REDIS1_MASTER_CONFIG_FILE:/etc/redis/master.conf:rw
@@ -15,8 +15,8 @@ services:
   redis1_replica1:
     image: redis
     networks:
-      db_redis:
-        ipv4_address: 172.65.0.3
+      backend:
+        ipv4_address: 172.63.11.3
     command: redis-server /etc/redis/replica1.conf
     volumes:
       - $REDIS1_REPLICA1_CONFIG_FILE:/etc/redis/replica1.conf:rw
@@ -27,8 +27,8 @@ services:
   redis1_replica2:
     image: redis
     networks:
-      db_redis:
-        ipv4_address: 172.65.0.4
+      backend:
+        ipv4_address: 172.63.11.4
     command: redis-server /etc/redis/replica2.conf
     depends_on:
       - redis1_master
@@ -42,8 +42,8 @@ services:
   redis1_sentinel1:
     image: redis
     networks:
-      db_redis:
-        ipv4_address: 172.65.0.21
+      backend:
+        ipv4_address: 172.63.11.21
     command: redis-sentinel /etc/redis/sentinel1.conf
     depends_on:
       - redis1_master
@@ -57,8 +57,8 @@ services:
   redis1_sentinel2:
     image: redis
     networks:
-      db_redis:
-        ipv4_address: 172.65.0.22
+      backend:
+        ipv4_address: 172.63.11.22
     command: redis-sentinel /etc/redis/sentinel2.conf
     depends_on:
       - redis1_master
@@ -72,8 +72,8 @@ services:
   redis1_sentinel3:
     image: redis
     networks:
-      db_redis:
-        ipv4_address: 172.65.0.23
+      backend:
+        ipv4_address: 172.63.11.23
     command: redis-sentinel /etc/redis/sentinel3.conf
     depends_on:
       - redis1_master

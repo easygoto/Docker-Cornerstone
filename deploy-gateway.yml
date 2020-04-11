@@ -17,14 +17,8 @@ services:
       - $GATEWAY_NGINX_LOG_DIR:/var/log/nginx
     privileged: true
 networks:
-  db_mysql:
-    driver: bridge
-    ipam:
-      config:
-      - subnet: 172.63.0.0/16
-  db_redis:
-    driver: bridge
-    ipam:
-      config:
-      - subnet: 172.65.0.0/16
   backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.63.0.0/16

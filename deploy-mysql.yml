@@ -3,8 +3,8 @@ services:
   mysql_master:
     image: mysql
     networks:
-      db_mysql:
-        ipv4_address: 172.63.0.2
+      backend:
+        ipv4_address: 172.63.1.2
     environment:
       MYSQL_ROOT_PASSWORD: $MASTER_MYSQL_PASSWORD
     ports:
@@ -17,8 +17,8 @@ services:
   mysql_slave:
     image: mysql
     networks:
-      db_mysql:
-        ipv4_address: 172.63.0.3
+      backend:
+        ipv4_address: 172.63.1.3
     depends_on:
       - mysql_master
     environment:
