@@ -6,6 +6,7 @@
    -f deploy-system7-2.yml ^
    -f deploy-mysql.yml ^
    -f deploy-redis1.yml ^
+   -f deploy-redis2.yml ^
    -f deploy-memcached.yml
 
 @if "%1" == "" (

@@ -1,0 +1,91 @@
+version: "3.7"
+services:
+  redis_cluster0:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.100
+    command:
+      '/tmp/cmd/init.sh && redis-server'
+    depends_on:
+      - redis_cluster1
+      - redis_cluster2
+      - redis_cluster3
+      - redis_cluster4
+      - redis_cluster5
+      - redis_cluster6
+    volumes:
+      - $REDIS_CLUSTER_COMMAND_DIR:/tmp/cmd
+    privileged: true
+  redis_cluster1:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.101
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE1_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE1_DATA_DIR:/data:rw
+    ports:
+      - 7001:6379
+    privileged: true
+  redis_cluster2:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.102
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE2_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE2_DATA_DIR:/data:rw
+    ports:
+      - 7002:6379
+    privileged: true
+  redis_cluster3:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.103
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE3_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE3_DATA_DIR:/data:rw
+    ports:
+      - 7003:6379
+    privileged: true
+  redis_cluster4:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.104
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE4_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE4_DATA_DIR:/data:rw
+    ports:
+      - 7004:6379
+    privileged: true
+  redis_cluster5:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.105
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE5_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE5_DATA_DIR:/data:rw
+    ports:
+      - 7005:6379
+    privileged: true
+  redis_cluster6:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.106
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE6_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE6_DATA_DIR:/data:rw
+    ports:
+      - 7006:6379
+    privileged: true
