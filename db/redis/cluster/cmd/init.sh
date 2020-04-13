@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo 'cluster meet 172.63.11.102: ' && redis-cli -h 172.63.11.101 cluster meet 172.63.11.102 6379
 echo 'cluster meet 172.63.11.103: ' && redis-cli -h 172.63.11.101 cluster meet 172.63.11.103 6379
 echo 'cluster meet 172.63.11.104: ' && redis-cli -h 172.63.11.101 cluster meet 172.63.11.104 6379
@@ -26,8 +27,8 @@ for slot in `seq 10923 16383` ; do
     redis-cli -h 172.63.11.103 cluster addslots "${slot}"
 done
 
-redis-cli -h 172.63.11.104 cluster replicate bd60a9a827fa161623c67ec5743585687f52ec96
-redis-cli -h 172.63.11.105 cluster replicate 6b22c154f7e6063f71446e6b1d4c50f4f9a195d2
-redis-cli -h 172.63.11.106 cluster replicate 746dae0b9bd8b62ec3ef882457cd2cf2592b2063
+# redis-cli -h 172.63.11.104 cluster replicate f847c3d0be467a5795a21411d9ffe72ef8643da2
+# redis-cli -h 172.63.11.105 cluster replicate f40e639b65ee2aa58074ed24f0bdf3dcb254c84a
+# redis-cli -h 172.63.11.106 cluster replicate d138135547c621bc488e7b82f6ac0a13721b0cbc
 
 redis-server

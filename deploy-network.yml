@@ -1,0 +1,7 @@
+version: "3.7"
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.63.0.0/16

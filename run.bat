@@ -1,4 +1,5 @@
 @set deployCmd=docker-compose ^
+   -f deploy-network.yml ^
    -f deploy-gateway.yml ^
    -f deploy-system5-1.yml ^
    -f deploy-system5-2.yml ^

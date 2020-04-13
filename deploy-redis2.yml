@@ -5,8 +5,7 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.100
-    command:
-      '/tmp/cmd/init.sh && redis-server'
+    command: /tmp/cmd/init.sh
     depends_on:
       - redis_cluster1
       - redis_cluster2
