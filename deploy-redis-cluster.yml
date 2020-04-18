@@ -5,10 +5,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.101
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7001.conf
     volumes:
-      - $REDIS_CLUSTER_NODE1_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE1_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER1_CONFIG_FILE:/etc/redis/redis_7001.conf:rw
+      - $REDIS_CLUSTER1_DATA_DIR:/data:rw
     ports:
       - 7001:6379
     privileged: true
@@ -17,10 +17,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.102
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7002.conf
     volumes:
-      - $REDIS_CLUSTER_NODE2_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE2_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER2_CONFIG_FILE:/etc/redis/redis_7002.conf:rw
+      - $REDIS_CLUSTER2_DATA_DIR:/data:rw
     ports:
       - 7002:6379
     privileged: true
@@ -29,10 +29,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.103
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7003.conf
     volumes:
-      - $REDIS_CLUSTER_NODE3_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE3_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER3_CONFIG_FILE:/etc/redis/redis_7003.conf:rw
+      - $REDIS_CLUSTER3_DATA_DIR:/data:rw
     ports:
       - 7003:6379
     privileged: true
@@ -41,10 +41,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.104
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7004.conf
     volumes:
-      - $REDIS_CLUSTER_NODE4_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE4_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER4_CONFIG_FILE:/etc/redis/redis_7004.conf:rw
+      - $REDIS_CLUSTER4_DATA_DIR:/data:rw
     ports:
       - 7004:6379
     privileged: true
@@ -53,10 +53,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.105
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7005.conf
     volumes:
-      - $REDIS_CLUSTER_NODE5_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE5_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER5_CONFIG_FILE:/etc/redis/redis_7005.conf:rw
+      - $REDIS_CLUSTER5_DATA_DIR:/data:rw
     ports:
       - 7005:6379
     privileged: true
@@ -65,10 +65,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.106
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7006.conf
     volumes:
-      - $REDIS_CLUSTER_NODE6_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE6_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER6_CONFIG_FILE:/etc/redis/redis_7006.conf:rw
+      - $REDIS_CLUSTER6_DATA_DIR:/data:rw
     ports:
       - 7006:6379
     privileged: true
@@ -77,10 +77,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.107
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7007.conf
     volumes:
-      - $REDIS_CLUSTER_NODE7_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE7_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER7_CONFIG_FILE:/etc/redis/redis_7007.conf:rw
+      - $REDIS_CLUSTER7_DATA_DIR:/data:rw
     ports:
       - 7007:6379
     privileged: true
@@ -89,10 +89,10 @@ services:
     networks:
       backend:
         ipv4_address: 172.63.11.108
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis_7008.conf
     volumes:
-      - $REDIS_CLUSTER_NODE8_CONFIG_FILE:/etc/redis/redis.conf:rw
-      - $REDIS_CLUSTER_NODE8_DATA_DIR:/data:rw
+      - $REDIS_CLUSTER8_CONFIG_FILE:/etc/redis/redis_7008.conf:rw
+      - $REDIS_CLUSTER8_DATA_DIR:/data:rw
     ports:
       - 7008:6379
     privileged: true
