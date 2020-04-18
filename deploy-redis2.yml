@@ -1,21 +1,5 @@
 version: "3.7"
 services:
-  redis_cluster0:
-    image: redis
-    networks:
-      backend:
-        ipv4_address: 172.63.11.100
-    command: /tmp/cmd/init.sh
-    depends_on:
-      - redis_cluster1
-      - redis_cluster2
-      - redis_cluster3
-      - redis_cluster4
-      - redis_cluster5
-      - redis_cluster6
-    volumes:
-      - $REDIS_CLUSTER_COMMAND_DIR:/tmp/cmd
-    privileged: true
   redis_cluster1:
     image: redis
     networks:
@@ -87,4 +71,28 @@ services:
       - $REDIS_CLUSTER_NODE6_DATA_DIR:/data:rw
     ports:
       - 7006:6379
+    privileged: true
+  redis_cluster7:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.107
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE7_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE7_DATA_DIR:/data:rw
+    ports:
+      - 7007:6379
+    privileged: true
+  redis_cluster8:
+    image: redis
+    networks:
+      backend:
+        ipv4_address: 172.63.11.108
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - $REDIS_CLUSTER_NODE8_CONFIG_FILE:/etc/redis/redis.conf:rw
+      - $REDIS_CLUSTER_NODE8_DATA_DIR:/data:rw
+    ports:
+      - 7008:6379
     privileged: true
