@@ -3,7 +3,7 @@
 ## 环境列表
 
 - [x] nginx
-- [x] mysql
+- [x] mysql +sysbench
 - [x] postgresql
 - [x] mongodb
 - [x] redis
@@ -22,6 +22,43 @@
 - 当前窗口打开命令行, 使用 `.\run.bat up -d` 部署环境, `.\run.bat re` 重启环境
 - 有少许项目不支持 PHP7, 所以保留了 PHP5
 - swoole 和 xdebug 共存会报致命错误, 所以每个版本都分 xdebug 版和 swoole 版
+
+## mysql
+
+### sysbench
+
+> /usr/local/share/sysbench/ 下还有很多 lua 脚本
+
+```
+# 准备数据
+sysbench /usr/local/share/sysbench/oltp_read_write.lua --tables=10 --table_size=500000 --mysql-user=root --mysql-password=123123 --mysql-db=sbtest --threads=4 prepare
+# 执行测试
+sysbench /usr/local/share/sysbench/oltp_point_select.lua --tables=10 --table_size=500000 --mysql-user=root --mysql-password=123123 --mysql-db=sbtest --threads=4 --time=60 --report-interval=10 run
+# 清理数据
+sysbench /usr/local/share/sysbench/oltp_read_write.lua --tables=10 --table_size=500000 --mysql-user=root --mysql-password=123123 --mysql-db=sbtest cleanup
+```
+
+### mysqldumpslow
+
+```
+-s: 排序方式. 默认at
+    al: average lock time 平均锁定时间
+    ar: average rows sent 平均返回行数
+    at: average query time 平均查询时间
+c: count 总执行次数
+l: lock time 总锁定时间
+r: rows sent 总返回行数
+t: query time 总查询时间
+-t: show the top n queries, 显示前多少名的记录
+-a: 默认不开启. 值为绑定值 N, 若开启, 显示真实值
+-g: 类似于 grep 命令, 过滤出需要的信息
+-l: 总时间中包含锁定时间
+
+# 例
+mysqldumpslow -s c -t 10 /var/lib/mysql/slow.log
+mysqldumpslow -s t -t 10 -g "left join" /var/lib/mysql/slow.log
+mysqldumpslow -s r -t 20 /var/lib/mysql/slow.log | more # 结合 | 和 more 使用, 否则可能出现刷屏的情况
+```
 
 ## 存在问题
 
