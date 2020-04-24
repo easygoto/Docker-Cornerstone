@@ -18,7 +18,7 @@ services:
     privileged: true
 
   mysql:
-    image: mysql
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/mysql:mysql-sysbench
     networks:
       - backend
     environment:
@@ -36,6 +36,8 @@ services:
       - backend
     environment:
       - POSTGRES_PASSWORD=$PGSQL_PASSWORD
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data:rw
     ports:
       - 5432:5432
     privileged: true
@@ -50,7 +52,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
     volumes:
-      - $MONGO_DATA_DIR:/data/:rw
+      - mongo_data:/data/db:rw
     privileged: true
 
   redis:
@@ -75,16 +77,19 @@ services:
 
   rabbit:
     image: rabbitmq:management
-#    hostname: docker_default
+    hostname: docker_default
     networks:
       - backend
     ports:
       - 5672:5672
       - 15672:15672
     volumes:
+      - rabbit_data:/var/lib/rabbitmq/mnesia:rw
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
-#      - $RABBIT_LOG_DIR:/var/log/rabbitmq:rw
-#      - $RABBIT_DATA_DIR:/var/lib/rabbitmq/mnesia:rw
     privileged: true
 networks:
   backend:
+volumes:
+  mongo_data:
+  pgsql_data:
+  rabbit_data:
