@@ -6,6 +6,7 @@ services:
       - backend
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - phpx5
       - phpx7
@@ -14,6 +15,7 @@ services:
       - $PROJECT_DIR:/var/www/html:rw
       - $NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
       - $NGINX_CONFIG_DIR:/etc/nginx/conf.d
+      - $NGINX_SSL_DIR:/etc/nginx/ssl
       - $NGINX_LOG_DIR:/var/log/nginx
     privileged: true
 
