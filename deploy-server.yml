@@ -11,6 +11,7 @@ services:
       - phpx5
       - phpx7
       - phpsw7
+      - php8
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
