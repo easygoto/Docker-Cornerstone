@@ -11,10 +11,11 @@
 - [x] rabbitmq
 - [x] php5.6 +redis +memcache +memcached +mongodb +amqp +imagick +apcu
     - [x] php5.6 +xdebug
-    - [x] php5.6 +swoole
-- [x] php7.4 +redis +memcache +memcached +mongodb +amqp +imagick +apcu +yaml +yaf +psr
-    - [x] php7.4 +xdebug +phalcon
-    - [x] php7.4 +swoole +swoole_async +swoole_postgresql +swoole_orm
+- [x] php7.4 +imagick +psr +memcache +memcached +apcu +msgpack +yaml +vld +amqp +yaf +mongodb +redis
+    - [x] php7.4 +xdebug +phalcon +xhprof
+    - [x] php7.4 +swoole +swoole_postgresql +swoole_orm +phpx +swoole_zookeeper +sdebug
+- [x] php8 +psr +memcached +yaml +redis
+    - [x] php8 +xdebug
 
 ## 环境介绍
 

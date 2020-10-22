@@ -37,15 +37,15 @@ services:
       - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
-  php8:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php8-fpm
+  phpx8:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php8-fpm-xdebug
     networks:
       - backend
     expose:
       - 9000
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP8_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP8_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     extra_hosts:
       - trink.test:$LOCAL_IP_ADDR
     privileged: true
