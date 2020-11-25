@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  work:
+    image: linuxserver/mysql-workbench
+    networks:
+      - backend
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - LANG=zh_CN.UTF-8
+      - LANGUAGE=zh_CN.UTF-8
+      - TZ=Asia/Shanghai
+    ports:
+      - 7998:3000
+    cap_add:
+      - IPC_LOCK
+
+  myadmin:
+    image: phpmyadmin
+    networks:
+      - backend
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - 7999:80
+
+  insight:
+    image: redislabs/redisinsight
+    networks:
+      - backend
+    ports:
+      - 8088:8001
