@@ -4,12 +4,16 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php5-fpm-xdebug
     networks:
       - backend
+    ports:
+      - 7979:7979
     expose:
       - 9000
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP5_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
+#    stdin_open: true
+#    tty: true
 
   phpx7:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-xdebug
@@ -17,6 +21,8 @@ services:
       - backend
     expose:
       - 9000
+    ports:
+      - 8001-8010:8001-8010
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP7_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -29,10 +35,9 @@ services:
     expose:
       - 9000
     ports:
-      - 127.0.0.1:8000-8010:8000-8010
-      - 127.0.0.1:9502:9502/udp
-      - 127.0.0.1:9501-9510:9501-9510
-      - 127.0.0.1:18305-18310:18305-18310
+      - 9502:9502/udp
+      - 9501-9510:9501-9510
+      - 18305-18310:18305-18310
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -44,6 +49,8 @@ services:
       - backend
     expose:
       - 9000
+    ports:
+      - 8011-8020:8011-8020
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP8_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
