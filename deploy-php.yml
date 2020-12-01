@@ -1,20 +1,5 @@
 version: "3.7"
 services:
-  phpx5:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php5-fpm-xdebug
-    networks:
-      - backend
-    ports:
-      - 7979:7979
-    expose:
-      - 9000
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-      - $PHP5_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
-    privileged: true
-#    stdin_open: true
-#    tty: true
-
   phpx7:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-xdebug
     networks:
@@ -22,7 +7,7 @@ services:
     expose:
       - 9000
     ports:
-      - 8001-8010:8001-8010
+      - 9001-9010:9001-9010
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP7_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -35,9 +20,10 @@ services:
     expose:
       - 9000
     ports:
+      - 9011-9020:9011-9020
+      - 9501:9501
       - 9502:9502/udp
-      - 9501-9510:9501-9510
-      - 18305-18310:18305-18310
+      - 9503-9504:9503-9504
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
@@ -50,10 +36,12 @@ services:
     expose:
       - 9000
     ports:
-      - 8011-8020:8011-8020
+      - 9021-9030:9021-9030
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP8_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     extra_hosts:
       - trink.test:$LOCAL_IP_ADDR
     privileged: true
+#    stdin_open: true
+#    tty: true

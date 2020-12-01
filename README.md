@@ -3,26 +3,26 @@
 ## 环境列表
 
 - [x] nginx
-- [x] mysql +sysbench
 - [x] postgresql
+- [x] mysql(sysbench)
 - [x] mongodb
 - [x] redis
 - [x] memcached
 - [x] rabbitmq
-- [x] php5.6 +redis +memcache +memcached +mongodb +amqp +imagick +apcu
-    - [x] php5.6 +xdebug
-- [x] php7.4 +imagick +psr +memcache +memcached +apcu +msgpack +yaml +vld +amqp +yaf +mongodb +redis
-    - [x] php7.4 +xdebug +phalcon +xhprof
-    - [x] php7.4 +swoole +swoole_postgresql +swoole_orm +phpx +swoole_zookeeper +sdebug
-- [x] php8 +psr +memcached +yaml +redis
-    - [x] php8 +xdebug
+- [x] php7.4(xdebug)
+- [x] php7.4(swoole)
+- [x] php8.0(xdebug)
+- [x] phpmyadmin
+- [x] mongo-express
+- [x] redisinsight
 
 ## 环境介绍
 
 - 环境变量已经提取到 .env.example 中, 使用时改名为 .env, 根据自己的环境适配变量
 - 当前窗口打开命令行, 使用 `.\run.bat up -d` 部署环境, `.\run.bat re` 重启环境
-- 有少许项目不支持 PHP7, 所以保留了 PHP5
 - swoole 和 xdebug 共存会报致命错误, 所以每个版本都分 xdebug 版和 swoole 版
+- windows10 wsl2 环境暂时不支持 mysql 映射到本地的操作
+- phpmyadmin, mongo-express, redisinsight 是查看数据的工具
 
 ## mysql
 
