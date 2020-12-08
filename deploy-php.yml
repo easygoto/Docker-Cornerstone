@@ -40,8 +40,21 @@ services:
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP8_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
-    extra_hosts:
-      - trink.test:$LOCAL_IP_ADDR
     privileged: true
-#    stdin_open: true
-#    tty: true
+#    extra_hosts:
+#      - trink.test:$LOCAL_IP_ADDR
+#    stdin_open: true # cli 开启持久进程
+#    tty: true # cli 开启持久进程
+
+  phpsw8:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php8-fpm-swoole
+    networks:
+      - backend
+    expose:
+      - 9000
+    ports:
+      - 9031-9040:9031-9040
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $PHP8_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
