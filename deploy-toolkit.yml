@@ -30,3 +30,5 @@ services:
       - insight_data:/db
     ports:
       - 127.0.0.1:8803:8001
+volumes:
+  insight_data:

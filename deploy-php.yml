@@ -1,26 +1,28 @@
 version: "3.7"
 services:
-  phpx7:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-xdebug
+  php7:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-apache
     networks:
       - backend
     expose:
       - 9000
     ports:
-      - 9001-9010:9001-9010
+      - 127.0.0.1:9001:80
+      - 18081:18081
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP7_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
+#    extra_hosts:
+#      - trink.test:$LOCAL_IP_ADDR
 
-  phpsw7:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php7-fpm-swoole
+  php7sw:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-swoole
     networks:
       - backend
     expose:
       - 9000
     ports:
-      - 9011-9020:9011-9020
       - 9501:9501
       - 9502:9502/udp
       - 9503-9504:9503-9504
@@ -28,33 +30,36 @@ services:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
+    stdin_open: true
+    tty: true
 
-  phpx8:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php8-fpm-xdebug
+  php8:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8.0-apache
     networks:
       - backend
     expose:
       - 9000
     ports:
-      - 9021-9030:9021-9030
+      - 127.0.0.1:9002:80
+      - 18082:18082
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP8_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
-#    extra_hosts:
-#      - trink.test:$LOCAL_IP_ADDR
-#    stdin_open: true # cli 开启持久进程
-#    tty: true # cli 开启持久进程
 
-  phpsw8:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:php8-fpm-swoole
+  php8sw:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8.0-swoole
     networks:
       - backend
     expose:
       - 9000
     ports:
-      - 9031-9040:9031-9040
+      - 18001:9501
+      - 18002:9502/udp
+      - 18003-18004:9503-9504
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $PHP8_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
+    stdin_open: true
+    tty: true
