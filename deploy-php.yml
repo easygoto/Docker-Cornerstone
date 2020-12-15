@@ -11,7 +11,8 @@ services:
       - 18081:18081
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP7_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
+#      - $PHP7_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP7_APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf
     privileged: true
 #    extra_hosts:
 #      - trink.test:$LOCAL_IP_ADDR
@@ -28,7 +29,7 @@ services:
       - 9503-9504:9503-9504
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+#      - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
     stdin_open: true
     tty: true
@@ -44,7 +45,8 @@ services:
       - 18082:18082
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP8_XDEBUG_INI_FILE:/usr/local/etc/php/php.ini:ro
+#      - $PHP8_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP8_APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf
     privileged: true
 
   php8sw:
@@ -59,7 +61,7 @@ services:
       - 18003-18004:9503-9504
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP8_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
+#      - $PHP8_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
     stdin_open: true
     tty: true

@@ -21,7 +21,7 @@ services:
     privileged: true
 
   mysql:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/mysql:mysql-sysbench
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/mysql:sysbench
     networks:
       - backend
     environment:
