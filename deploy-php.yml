@@ -4,15 +4,13 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-apache
     networks:
       - backend
-    expose:
-      - 9000
     ports:
       - 127.0.0.1:9001:80
       - 18081:18081
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
 #      - $PHP7_INI_FILE:/usr/local/etc/php/php.ini:ro
-      - $PHP7_APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf
+      - $APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf:ro
     privileged: true
 #    extra_hosts:
 #      - trink.test:$LOCAL_IP_ADDR
@@ -21,8 +19,6 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-swoole
     networks:
       - backend
-    expose:
-      - 9000
     ports:
       - 9501:9501
       - 9502:9502/udp
@@ -38,23 +34,19 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8.0-apache
     networks:
       - backend
-    expose:
-      - 9000
     ports:
       - 127.0.0.1:9002:80
       - 18082:18082
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
 #      - $PHP8_INI_FILE:/usr/local/etc/php/php.ini:ro
-      - $PHP8_APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf
+      - $APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf:ro
     privileged: true
 
   php8sw:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8.0-swoole
     networks:
       - backend
-    expose:
-      - 9000
     ports:
       - 18001:9501
       - 18002:9502/udp
