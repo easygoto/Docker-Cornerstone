@@ -1,4 +1,4 @@
-@set deployCmd=docker-compose ^
+@set deployCmd=docker compose ^
    -f deploy-server.yml ^
    -f deploy-toolkit.yml ^
    -f deploy-php.yml

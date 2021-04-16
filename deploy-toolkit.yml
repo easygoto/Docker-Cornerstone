@@ -10,6 +10,8 @@ services:
       - PMA_PASSWORD=$MYSQL_ROOT_PASSWORD
     ports:
       - 127.0.0.1:8801:80
+    depends_on:
+      - mysql
 
   mongoer:
     image: mongo-express
@@ -21,6 +23,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_PASSWORD
     ports:
       - 127.0.0.1:8802:8081
+    depends_on:
+      - mongo
 
   insight:
     image: redislabs/redisinsight
@@ -30,5 +34,7 @@ services:
       - insight_data:/db
     ports:
       - 127.0.0.1:8803:8001
+    depends_on:
+      - redis
 volumes:
   insight_data:
