@@ -26,6 +26,10 @@
 
 ## mysql
 
+### my.cnf
+
+> 文件的权限必须设置为只读模式
+
 ### sysbench
 
 > /usr/local/share/sysbench/ 下还有很多 lua 脚本

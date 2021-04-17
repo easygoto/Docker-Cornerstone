@@ -29,7 +29,7 @@ services:
     ports:
       - 127.0.0.1:3306:3306
     volumes:
-      - mysql_data:/var/lib/mysql:rw
+      - $MYSQL_DATA_DIR:/var/lib/mysql:rw
       - $MYSQL_CONFIG_FILE:/etc/mysql/conf.d/my.cnf:ro
     privileged: true
 
@@ -80,7 +80,6 @@ services:
 networks:
   backend:
 volumes:
-  mysql_data:
   mongo_data:
   redis_data:
   rabbit_data:
