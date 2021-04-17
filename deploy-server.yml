@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nginx:
-    image: nginx
+    image: nginx:alpine
     networks:
       - backend
     ports:
@@ -18,6 +18,18 @@ services:
       - $NGINX_CONFIG_DIR:/etc/nginx/conf.d
       - $NGINX_SSL_DIR:/etc/nginx/ssl
       - $NGINX_LOG_DIR:/var/log/nginx
+    privileged: true
+
+  pgsql:
+    image: postgres:alpine
+    networks:
+      - backend
+    environment:
+      - POSTGRES_PASSWORD=$PGSQL_PASSWORD
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data:rw
+    ports:
+      - 127.0.0.1:5432:5432
     privileged: true
 
   mysql:
@@ -47,7 +59,7 @@ services:
     privileged: true
 
   redis:
-    image: redis
+    image: redis:alpine
     networks:
       - backend
     ports:
@@ -59,7 +71,7 @@ services:
     privileged: true
 
   memcached:
-    image: memcached
+    image: memcached:alpine
     networks:
       - backend
     ports:
@@ -67,7 +79,7 @@ services:
     privileged: true
 
   rabbit:
-    image: rabbitmq:management
+    image: rabbitmq:management-alpine
     networks:
       - backend
     ports:
@@ -80,6 +92,7 @@ services:
 networks:
   backend:
 volumes:
+  pgsql_data:
   mongo_data:
   redis_data:
   rabbit_data:
