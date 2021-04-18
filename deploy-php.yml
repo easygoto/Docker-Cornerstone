@@ -1,7 +1,19 @@
 version: "3.7"
 services:
+  apache:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-apache
+    networks:
+      - backend
+    ports:
+      - 127.0.0.1:9002:80
+    volumes:
+      - D:/BoCai:/var/www/html:rw
+      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+#      - $APACHE_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+
   php7:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-apache
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-fpm-alpine
     networks:
       - backend
     ports:
@@ -16,7 +28,7 @@ services:
 #      - trink.test:$LOCAL_IP_ADDR
 
   php7sw:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7.4-swoole
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-cli-alpine
     networks:
       - backend
     ports:
@@ -26,34 +38,6 @@ services:
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
 #      - $PHP7_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
-    privileged: true
-    stdin_open: true
-    tty: true
-
-  php8:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8.0-apache
-    networks:
-      - backend
-    ports:
-      - 127.0.0.1:9002:80
-      - 18082:18082
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-#      - $PHP8_INI_FILE:/usr/local/etc/php/php.ini:ro
-      - $APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf:ro
-    privileged: true
-
-  php8sw:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8.0-swoole
-    networks:
-      - backend
-    ports:
-      - 18001:9501
-      - 18002:9502/udp
-      - 18003-18004:9503-9504
-    volumes:
-      - $PROJECT_DIR:/var/www/html:rw
-#      - $PHP8_SWOOLE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
     stdin_open: true
     tty: true

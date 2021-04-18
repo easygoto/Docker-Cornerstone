@@ -9,9 +9,7 @@ services:
       - 443:443
     depends_on:
       - php7
-      - php8
       - php7sw
-      - php8sw
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
