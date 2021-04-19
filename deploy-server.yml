@@ -82,7 +82,7 @@ services:
       - backend
     ports:
       - 127.0.0.1:5672:5672
-      - 127.0.0.1:15672:15672
+      - 127.0.0.1:8805:15672
     volumes:
       - rabbit_data:/var/lib/rabbitmq/mnesia:rw
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
