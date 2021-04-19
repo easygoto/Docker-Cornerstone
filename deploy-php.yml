@@ -7,8 +7,8 @@ services:
     ports:
       - 127.0.0.1:9002:80
     volumes:
-      - D:/BoCai:/var/www/html:rw
-      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - $PROJECT_DIR:/var/www/html:rw
+      - $APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf
 #      - $APACHE_PHP_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 
