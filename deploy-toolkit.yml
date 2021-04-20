@@ -4,6 +4,8 @@ services:
     image: dpage/pgadmin4
     networks:
       - backend
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin:rw
     environment:
       - PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL
       - PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD
@@ -49,4 +51,5 @@ services:
     depends_on:
       - redis
 volumes:
+  pgadmin_data:
   insight_data:

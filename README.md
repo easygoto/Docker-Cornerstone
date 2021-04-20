@@ -57,7 +57,7 @@
 
 - php-apache 版本自己可以提供 apache 的服务, 不需要额外的代理服务器, 配置文件在 `apache/000-default.conf`
 - php-fpm-alpine 版本, 除了加入的扩展之外, 还集成了 xdebug(断点调试), xhprof(性能分析) 等扩展
-- php-cli-alpine 版本, 除了加入的扩展之外, 还集成了 swoole 系列 (+swoole-async, +swoole-orm, +sdebug) 等扩展
+- php-cli-alpine 版本, 除了加入的扩展之外, 还集成了 swoole 系列 (+swoole_postgresql, +swoole_orm, +sdebug) 等扩展
 
 ## Mysql 环境简介
 

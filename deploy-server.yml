@@ -54,6 +54,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
     volumes:
       - mongo_data:/data/db:rw
+      - mongo_config:/data/configdb:rw
     privileged: true
 
   redis:
@@ -84,13 +85,14 @@ services:
       - 127.0.0.1:5672:5672
       - 127.0.0.1:8805:15672
     volumes:
-      - rabbit_data:/var/lib/rabbitmq/mnesia:rw
+      - rabbit_data:/var/lib/rabbitmq:rw
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
     privileged: true
 networks:
   backend:
 volumes:
   pgsql_data:
+  mongo_config:
   mongo_data:
   redis_data:
   rabbit_data:
