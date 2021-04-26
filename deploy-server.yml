@@ -88,8 +88,6 @@ services:
       - rabbit_data:/var/lib/rabbitmq:rw
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
     privileged: true
-networks:
-  backend:
 volumes:
   pgsql_data:
   mongo_config:
