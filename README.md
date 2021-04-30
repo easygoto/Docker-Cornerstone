@@ -56,8 +56,33 @@
 **版本简介**
 
 - php-apache 版本自己可以提供 apache 的服务, 不需要额外的代理服务器, 配置文件在 `apache/000-default.conf`
-- php-fpm-alpine 版本, 除了加入的扩展之外, 还集成了 xdebug(断点调试), xhprof(性能分析) 等扩展
-- php-cli-alpine 版本, 除了加入的扩展之外, 还集成了 swoole 系列 (+swoole_postgresql, +swoole_orm, +sdebug) 等扩展
+- php-fpm-alpine 版本, 除了加入的扩展之外, 还集成了 xdebug(断点调试), tideways_xhprof(性能分析) 等扩展
+- php-cli-alpine 版本, 除了加入的扩展之外, 还集成了 swoole 系列 (+swoole_postgresql, +swoole_orm, +sdebug, +swoole_serialize, +swoole_zookeeper) 等扩展
+
+### tideways_xhprof
+
+> 抓取单机性能分析的数据
+
+```php
+if (extension_loaded('tideways_xhprof')) {
+    // tideways_xhprof_enable(TIDEWAYS_XHPROF_FLAGS_NO_BUILTINS);
+    tideways_xhprof_enable(TIDEWAYS_XHPROF_FLAGS_MEMORY | TIDEWAYS_XHPROF_FLAGS_CPU);
+
+    // 程序结束时执行
+    register_shutdown_function(
+        static function () {
+            file_put_contents(
+                sprintf(
+                    '%s/%s.trip.xhprof',
+                    get_cfg_var('xhprof.output_dir') ?: sys_get_temp_dir(),
+                    uniqid()
+                ),
+                json_encode(['profile' => tideways_xhprof_disable()], JSON_THROW_ON_ERROR)
+            );
+        }
+    );
+}
+```
 
 ## Mysql 环境简介
 
@@ -129,3 +154,12 @@ mysqldumpslow -s r -t 20 /var/lib/mysql/slow.log | more # 结合 | 和 more 使�
 > localhost:8805
 
 ![rabbit-manage](docs/rabbit-manage.png)
+
+### xhgui
+
+> localhost:8806
+
+**导入性能分析数据到 mongo 数据库**
+
+`php /var/www/xhgui/external/import.php -f /tmp/608bc6ff1443b.test.xhprof`
+

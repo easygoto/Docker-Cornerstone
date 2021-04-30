@@ -11,7 +11,8 @@ services:
       - php7
       - php7sw
     volumes:
-      - $PROJECT_DIR:/var/www/html:rw
+      - $APACHE_PROJECT_DIR:/var/www/webroot:rw
+      - $NGINX_PROJECT_DIR:/var/www/html:rw
       - $NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
       - $NGINX_CONFIG_DIR:/etc/nginx/conf.d
       - $NGINX_SSL_DIR:/etc/nginx/ssl
