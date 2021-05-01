@@ -13,6 +13,7 @@ services:
     volumes:
       - $APACHE_PROJECT_DIR:/var/www/webroot:rw
       - $NGINX_PROJECT_DIR:/var/www/html:rw
+      - xhgui_webroot_share:/var/www/xhgui:ro
       - $NGINX_CONFIG_FILE:/etc/nginx/nginx.conf
       - $NGINX_CONFIG_DIR:/etc/nginx/conf.d
       - $NGINX_SSL_DIR:/etc/nginx/ssl

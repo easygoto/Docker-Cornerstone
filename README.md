@@ -159,7 +159,7 @@ mysqldumpslow -s r -t 20 /var/lib/mysql/slow.log | more # 结合 | 和 more 使�
 
 > localhost:8806
 
-**导入性能分析数据到 mongo 数据库**
+- 建议将 `templates/runs/paginated-list.twig:58` 中的 `SERVER.SERVER_NAME` 改成 `SERVER.HTTP_HOST`
 
-`php /var/www/xhgui/external/import.php -f /tmp/608bc6ff1443b.test.xhprof`
+![xhgui](docs/xhgui.png)
 

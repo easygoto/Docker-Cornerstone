@@ -1,10 +1,4 @@
 <?php
-/**
- * Default configuration for XHGui.
- *
- * To change these, create a file called `config.php` file in the same directory
- * and return an array from there with your overriding settings.
- */
 
 return [
     // Which backend to use for Xhgui_Saver.
@@ -54,7 +48,7 @@ return [
     // Setup timezone for date formatting
     // Example: 'UTC', 'Europe/Tallinn'
     // If left empty, php default will be used (php.ini or compiled in default)
-    'timezone' => '',
+    'timezone' => 'Asia/Shanghai',
 
     // Date format used when browsing XHGui pages.
     //
