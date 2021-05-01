@@ -63,7 +63,7 @@
 
 > 抓取单机性能分析的数据
 
-```php
+```
 if (extension_loaded('tideways_xhprof')) {
     // tideways_xhprof_enable(TIDEWAYS_XHPROF_FLAGS_NO_BUILTINS);
     tideways_xhprof_enable(TIDEWAYS_XHPROF_FLAGS_MEMORY | TIDEWAYS_XHPROF_FLAGS_CPU);
@@ -160,6 +160,17 @@ mysqldumpslow -s r -t 20 /var/lib/mysql/slow.log | more # 结合 | 和 more 使�
 > localhost:8806
 
 - 建议将 `templates/runs/paginated-list.twig:58` 中的 `SERVER.SERVER_NAME` 改成 `SERVER.HTTP_HOST`
+
+**Mongo索引**
+
+```
+db.results.ensureIndex( { 'meta.SERVER.REQUEST_TIME' : -1 } );
+db.results.ensureIndex( { 'profile.main().wt' : -1 } );
+db.results.ensureIndex( { 'profile.main().mu' : -1 } );
+db.results.ensureIndex( { 'profile.main().cpu' : -1 } );
+db.results.ensureIndex( { 'meta.url' : 1 } );
+db.results.ensureIndex( { 'meta.simple_url' : 1 } );
+```
 
 ![xhgui](docs/xhgui.png)
 

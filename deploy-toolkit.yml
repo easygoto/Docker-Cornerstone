@@ -73,8 +73,3 @@ services:
       - 127.0.0.1:$XHPROF_UI_PORT:80
     depends_on:
       - mongo
-volumes:
-  xhgui_webroot_share:
-  nginx_run:
-  pgadmin_data:
-  insight_data:

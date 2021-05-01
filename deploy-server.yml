@@ -90,9 +90,3 @@ services:
       - rabbit_data:/var/lib/rabbitmq:rw
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
     privileged: true
-volumes:
-  pgsql_data:
-  mongo_config:
-  mongo_data:
-  redis_data:
-  rabbit_data:

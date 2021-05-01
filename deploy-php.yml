@@ -10,6 +10,8 @@ services:
       - $APACHE_PROJECT_DIR:/var/www/webroot:rw
       - $NGINX_PROJECT_DIR:/var/www/html:rw
       - xhgui_webroot_share:/var/www/xhgui:ro
+      - $XHGUI_CONFIG:/var/www/xhgui/config/config.php:ro
+      - $XHGUI_HEADER_SCRIPT:/var/www/xhgui/external/header.php:ro
       - $APACHE_CONF_FILE:/etc/apache2/sites-available/000-default.conf:ro
       - $PHP7_APACHE_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
@@ -24,6 +26,8 @@ services:
       - $APACHE_PROJECT_DIR:/var/www/webroot:rw
       - $NGINX_PROJECT_DIR:/var/www/html:rw
       - xhgui_webroot_share:/var/www/xhgui:ro
+      - $XHGUI_CONFIG:/var/www/xhgui/config/config.php:ro
+      - $XHGUI_HEADER_SCRIPT:/var/www/xhgui/external/header.php:ro
       - $PHP7_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
 #    extra_hosts:
