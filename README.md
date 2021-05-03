@@ -5,7 +5,6 @@
 > 当前目录打开命令行, 使用 `.\run.bat up -d` 即可部署环境, 使用 `.\run.bat start/re/stop` 开启/重启/停止环境
 
 - [PHP 服务](./deploy-php.yml)
-  - [x] php8-apache
   - [x] php7-fpm-alpine
   - [x] php7-cli-alpine
 - [服务器](./deploy-server.yml)
@@ -21,6 +20,7 @@
   - [x] phpmyadmin `免密`
   - [x] mongo-express `免密`
   - [x] redisinsight `免密`
+  - [x] xhgui `免密`
 
 ## 存在问题
 
@@ -55,11 +55,14 @@
 
 **版本简介**
 
-- php-apache 版本自己可以提供 apache 的服务, 不需要额外的代理服务器, 配置文件在 `apache/000-default.conf`
 - php-fpm-alpine 版本, 除了加入的扩展之外, 还集成了 xdebug(断点调试), tideways_xhprof(性能分析) 等扩展
 - php-cli-alpine 版本, 除了加入的扩展之外, 还集成了 swoole 系列 (+swoole_postgresql, +swoole_orm, +sdebug, +swoole_serialize, +swoole_zookeeper) 等扩展
 
 ### tideways_xhprof
+
+#### 收集分析数据
+
+> 在 php.ini 中 auto_prepend_file 的配置项加入 [header.php](./xhgui/header.php) 即可
 
 > 抓取单机性能分析的数据
 

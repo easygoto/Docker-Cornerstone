@@ -56,8 +56,6 @@ services:
     networks:
       - backend
     volumes:
-      - $APACHE_PROJECT_DIR:/var/www/webroot:rw
-      - $NGINX_PROJECT_DIR:/var/www/html:rw
       - $XHGUI_CONFIG:/var/www/xhgui/config/config.php:ro
       - $XHGUI_HEADER_SCRIPT:/var/www/xhgui/external/header.php:ro
       - $XHGUI_NGINX_CONFIG:/etc/nginx/conf.d/default.conf:ro
