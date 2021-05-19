@@ -5,7 +5,6 @@ volumes:
   pgsql_data:
   mongo_config:
   mongo_data:
-  redis_data:
   rabbit_data:
   xhgui_webroot_share:
   nginx_run:

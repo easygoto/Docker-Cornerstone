@@ -19,6 +19,9 @@ services:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-cli-alpine
     networks:
       - backend
+    environment:
+      - PHP_IDE_CONFIG=serverName=localhost # yasd 需要
+      - php7sw
     ports:
       - 9501-9503:9501-9503
       - 9504:9504/udp
