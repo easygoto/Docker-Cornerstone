@@ -15,18 +15,20 @@ services:
 #    extra_hosts:
 #      - trink.devp:$LOCAL_IP_ADDR
 
-  php7sw:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-cli-alpine
+  php8sw:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-cli-alpine
     networks:
       - backend
     environment:
       - PHP_IDE_CONFIG=serverName=localhost # yasd 需要
+      - EXTERN_IP=$LOCAL_IP_ADDR # yasd 需要
     ports:
       - 9501-9503:9501-9503
       - 9504:9504/udp
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
-      - $PHP7_CLI_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $OTHER_PROJECT_DIR:/var/www/webroot:rw
+      - $PHP8_CLI_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
     stdin_open: true
     tty: true
