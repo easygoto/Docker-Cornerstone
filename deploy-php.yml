@@ -21,7 +21,6 @@ services:
       - backend
     environment:
       - PHP_IDE_CONFIG=serverName=localhost # yasd 需要
-      - EXTERN_IP=$LOCAL_IP_ADDR # yasd 需要
     ports:
       - 9501-9503:9501-9503
       - 9504:9504/udp
