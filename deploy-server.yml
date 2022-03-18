@@ -20,6 +20,8 @@ services:
       - $NGINX_SSL_DIR:/etc/nginx/ssl
       - $NGINX_LOG_DIR:/var/log/nginx
     privileged: true
+    extra_hosts:
+      - host.docker.intenal:$LOCAL_IP_ADDR
 
   pgsql:
     image: postgres:alpine

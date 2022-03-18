@@ -1,29 +1,27 @@
 version: "3.7"
 services:
   php7:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-fpm-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-fpm
     networks:
       - backend
     ports:
-      - 9505:9505
+      - "9505:9505"
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $OTHER_PROJECT_DIR:/var/www/webroot:rw
       - xhgui_webroot_share:/var/www/xhgui:rw
       - $PHP7_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
-#    extra_hosts:
-#      - trink.devp:$LOCAL_IP_ADDR
 
   php8sw:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-cli-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-cli
     networks:
       - backend
     environment:
       - PHP_IDE_CONFIG=serverName=localhost # yasd 需要
     ports:
-      - 9501-9503:9501-9503
-      - 9504:9504/udp
+      - "9501-9503:9501-9503"
+      - "9504:9504/udp"
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $OTHER_PROJECT_DIR:/var/www/webroot:rw
