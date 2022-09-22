@@ -1,7 +1,7 @@
 version: "3.7"
 services:
-  php7:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:7-fpm
+  php8:
+    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-fpm
     networks:
       - backend
     ports:
@@ -10,8 +10,9 @@ services:
       - $PROJECT_DIR:/var/www/html:rw
       - $OTHER_PROJECT_DIR:/var/www/webroot:rw
       - xhgui_webroot_share:/var/www/xhgui:rw
-      - $PHP7_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - $PHP8_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
+    restart: always
 
   php8sw:
     image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-cli
@@ -29,3 +30,4 @@ services:
     privileged: true
     stdin_open: true
     tty: true
+    restart: always
