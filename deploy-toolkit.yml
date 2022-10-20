@@ -61,7 +61,7 @@ services:
     restart: always
 
   xhgui:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/xhgui
+    image: treelink123/xhgui
     networks:
       - backend
     volumes:
@@ -83,7 +83,7 @@ services:
     restart: always
 
   kibana6:
-    image: docker.elastic.co/kibana/kibana:6.8.13
+    image: kibana:6.8.23
     volumes:
       - $KIBANA_CONFIG_FILE:/usr/share/kibana/config/kibana.yml
     ports:
@@ -95,5 +95,21 @@ services:
       - ELASTICSEARCH_PASSWORD=$ES_PASSWORD
     depends_on:
       - elastic6
+    restart: always
+    privileged: true
+
+  kafkaui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "127.0.0.1:${KAFKA_UI_PORT}:8080"
+    networks:
+      - backend
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    depends_on:
+      - kafka
+      - zookeeper
     restart: always
     privileged: true

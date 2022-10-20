@@ -30,6 +30,7 @@
 - [x] pgsql 的 `/var/lib/postgresql/data` 目录映射不到 windows 主机, 可以使用 volume 解决
 - [x] rabbitmq 的 `/var/lib/rabbitmq/mnesia` 是数据目录, 容器重启的时候, 不能持久化在本地, 可以使用 volume 解决
 - [ ] docker alpine 镜像大小优化
+- [ ] mysql 数据文件映射到主机, 需要 lower_case_table_names 这个配置项防范新容器损坏数据的问题
 
 ## PHP 环境简介
 

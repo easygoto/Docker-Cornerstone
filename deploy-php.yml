@@ -1,7 +1,19 @@
 version: "3.7"
 services:
+  php7:
+    image: treelink123/php:7-fpm
+    networks:
+      - backend
+    volumes:
+      - $PROJECT_DIR:/var/www/html:rw
+      - $OTHER_PROJECT_DIR:/var/www/webroot:rw
+      - xhgui_webroot_share:/var/www/xhgui:rw
+      - $PHP7_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
+    privileged: true
+    restart: always
+
   php8:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-fpm
+    image: treelink123/php:8-fpm
     networks:
       - backend
     ports:
@@ -15,7 +27,7 @@ services:
     restart: always
 
   php8sw:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/php:8-cli
+    image: treelink123/php:8-cli
     networks:
       - backend
     environment:

@@ -11,6 +11,7 @@ services:
       - "127.0.0.1:${NGINX_OTHER_PORT}:9090"
 #      - "443:443"
     depends_on:
+      - php7
       - php8
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
@@ -25,7 +26,7 @@ services:
     restart: always
 
   elastic6:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.13
+    image: elasticsearch:6.8.13
     networks:
       - backend
     volumes:
@@ -57,7 +58,7 @@ services:
     restart: always
 
   mysql:
-    image: registry.cn-hangzhou.aliyuncs.com/treelink/mysql:sysbench
+    image: treelink123/mysql:sysbench
     networks:
       - backend
     environment:
@@ -126,4 +127,33 @@ services:
       - rabbit_data:/var/lib/rabbitmq:rw
       - $RABBIT_CONFIG_FILE:/etc/rabbitmq/rabbitmq.conf
     privileged: true
+    restart: always
+
+  zookeeper:
+    image: zookeeper
+    networks:
+      - backend
+    volumes:
+      - zookeeper_data:/data:rw
+      - zookeeper_datalog:/datalog:rw
+      - zookeeper_log:/logs:rw
+    ports:
+      - "2181:2181"
+    restart: always
+
+  kafka:
+    image: bitnami/kafka
+    networks:
+      - backend
+    ports:
+      - "9092:9092"
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_BROKER_ID=0
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_ZOOKEEPER_SESSION_TIMEOUT=6000
+    depends_on:
+      - zookeeper
     restart: always

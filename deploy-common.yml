@@ -10,3 +10,6 @@ volumes:
   nginx_run:
   pgadmin_data:
   insight_data:
+  zookeeper_data:
+  zookeeper_datalog:
+  zookeeper_log:
