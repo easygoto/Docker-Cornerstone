@@ -83,7 +83,7 @@ services:
     restart: always
 
   kibana6:
-    image: kibana:6.8.23
+    image: docker.elastic.co/kibana/kibana:6.8.13
     volumes:
       - $KIBANA_CONFIG_FILE:/usr/share/kibana/config/kibana.yml
     ports:
