@@ -25,6 +25,7 @@ services:
       - $PHP8_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
     privileged: true
     restart: always
+#    image: treelink123/php:8-fpm
 
   php8sw:
     image: treelink123/php:8-cli
@@ -43,3 +44,4 @@ services:
     stdin_open: true
     tty: true
     restart: always
+#    image: treelink123/php:8-cli

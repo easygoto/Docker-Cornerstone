@@ -5,6 +5,9 @@ volumes:
   pgsql_data:
   mongo_config:
   mongo_data:
+  zookeeper_data:
+  zookeeper_datalog:
+  kafka_data:
   rabbit_data:
   xhgui_webroot_share:
   nginx_run:
