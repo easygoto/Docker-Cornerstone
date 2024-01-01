@@ -1,7 +1,7 @@
 @set deployCmd=docker-compose ^
    -f deploy-common.yml ^
    -f deploy-server.yml ^
-   -f deploy-toolkit.yml ^
+   -f deploy-ui.yml ^
    -f deploy-php.yml
 
 @if "%1" == "" (

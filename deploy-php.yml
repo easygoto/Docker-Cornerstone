@@ -8,7 +8,7 @@ services:
       - $PROJECT_DIR:/var/www/html:rw
       - $OTHER_PROJECT_DIR:/var/www/webroot:rw
       - xhgui_webroot_share:/var/www/xhgui:rw
-      - $PHP7_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - ./php/php7.fpm.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
     restart: always
 
@@ -22,7 +22,7 @@ services:
       - $PROJECT_DIR:/var/www/html:rw
       - $OTHER_PROJECT_DIR:/var/www/webroot:rw
       - xhgui_webroot_share:/var/www/xhgui:rw
-      - $PHP8_FPM_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - ./php/php8.fpm.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
     restart: always
 
@@ -38,7 +38,7 @@ services:
     volumes:
       - $PROJECT_DIR:/var/www/html:rw
       - $OTHER_PROJECT_DIR:/var/www/webroot:rw
-      - $PHP8_CLI_INI_FILE:/usr/local/etc/php/php.ini:ro
+      - ./php/php8.cli.ini:/usr/local/etc/php/php.ini:ro
     privileged: true
     stdin_open: true
     tty: true

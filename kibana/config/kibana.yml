@@ -1,4 +1,9 @@
-server.name: kibana
-server.host: "0"
-elasticsearch.hosts: [ "http://elastic6:9200" ]
-xpack.monitoring.ui.container.elasticsearch.enabled: true
+server.host: 0.0.0.0
+server.shutdownTimeout: 5s
+elasticsearch.hosts: ['http://es8:9200']
+monitoring.ui.container.elasticsearch.enabled: true
+elasticsearch.username: kibana_system
+elasticsearch.password: y1ZE-aMTqGaWGqIBMyUX
+
+i18n.locale: "zh-CN"
+server.ssl.enabled: false

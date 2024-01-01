@@ -125,41 +125,18 @@ mysqldumpslow -s t -t 10 -g "left join" /var/lib/mysql/slow.log
 mysqldumpslow -s r -t 20 /var/lib/mysql/slow.log | more # 结合 | 和 more 使用, 否则可能出现刷屏的情况
 ```
 
-## 数据可视化工具
+## elastic8+kibana8
 
-> 服务器的数据服务不建议对外开放
+### kibana8 额外操作
 
-### phpmyadmin
+- 容器创建完成后的操作
+  - 重置 kibana 密码 `/usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system`
+  - 使用其登录 127.0.0.1:5601 `kibana_system/生成的密码`
+  - 输入验证码后初始化(kibana 容器日志会自动打印出)
+  - 初始化完成后使用账号密码登录 (elastic/password)
 
-> localhost:8801
 
-![phpmyadmin](docs/phpmyadmin.png)
-
-### mongo-express
-
-> localhost:8802
-
-![mongo-express](docs/mongo-express.png)
-
-### redis-insight
-
-> localhost:8803
-
-![redis-insight](docs/redisinsight.png)
-
-### pgadmin4
-
-> localhost:8804
-
-![pgadmin](docs/pgadmin4.png)
-
-### rabbit-manage
-
-> localhost:8805
-
-![rabbit-manage](docs/rabbit-manage.png)
-
-### xhgui
+## xhgui
 
 > localhost:8806
 
@@ -175,6 +152,3 @@ db.results.ensureIndex( { 'profile.main().cpu' : -1 } );
 db.results.ensureIndex( { 'meta.url' : 1 } );
 db.results.ensureIndex( { 'meta.simple_url' : 1 } );
 ```
-
-![xhgui](docs/xhgui.png)
-

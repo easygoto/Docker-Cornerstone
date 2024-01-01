@@ -1,35 +1,15 @@
 version: "3.7"
 services:
-  pgadmin:
-    image: dpage/pgadmin4
+  dbeaver:
+    image: dbeaver/cloudbeaver:latest
     networks:
       - backend
+    ports:
+      - "127.0.0.1:8978:8978"
     volumes:
-      - pgadmin_data:/var/lib/pgadmin:rw
-    environment:
-      - TZ=$TIME_ZONE
-      - PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL
-      - PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD
-    ports:
-      - "127.0.0.1:${PGSQL_UI_PORT}:80"
-    depends_on:
-      - pgsql
+      - ./dbeaver/workspace:/opt/cloudbeaver/workspace
     restart: always
-
-  myadmin:
-    image: phpmyadmin
-    networks:
-      - backend
-    environment:
-      - TZ=$TIME_ZONE
-      - PMA_HOST=mysql
-      - PMA_USER=root
-      - PMA_PASSWORD=$MYSQL_ROOT_PASSWORD
-    ports:
-      - "127.0.0.1:${MYSQL_UI_PORT}:80"
-    depends_on:
-      - mysql
-    restart: always
+    privileged: true
 
   mongoer:
     image: mongo-express
@@ -65,8 +45,8 @@ services:
     networks:
       - backend
     volumes:
-      - $XHGUI_NGINX_CONFIG:/etc/nginx/conf.d/default.conf:ro
-      - $XHGUI_PHP_INI:/etc/php7/php.ini:ro
+      - ./xhgui/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./xhgui/php.ini:/etc/php7/php.ini:ro
       - xhgui_webroot_share:/var/www/xhgui:rw
       - nginx_run:/run/nginx:rw
     environment:
@@ -82,28 +62,25 @@ services:
       - mongo
     restart: always
 
-  kibana6:
-    image: docker.elastic.co/kibana/kibana:6.8.13
-    volumes:
-      - $KIBANA_CONFIG_FILE:/usr/share/kibana/config/kibana.yml
-    ports:
-      - "127.0.0.1:${KIBANA_PORT}:5601"
+  kibana8:
+    image: docker.elastic.co/kibana/kibana:8.11.3
     networks:
       - backend
-    environment:
-      - ELASTICSEARCH_USERNAME=$ES_USERNAME
-      - ELASTICSEARCH_PASSWORD=$ES_PASSWORD
+    ports:
+      - "127.0.0.1:${KIBANA_PORT}:5601"
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     depends_on:
-      - elastic6
+      - es8
     restart: always
     privileged: true
 
   kafkaui:
     image: provectuslabs/kafka-ui:latest
-    ports:
-      - "127.0.0.1:${KAFKA_UI_PORT}:8080"
     networks:
       - backend
+    ports:
+      - "127.0.0.1:${KAFKA_UI_PORT}:8080"
     environment:
       - KAFKA_CLUSTERS_0_NAME=local
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
